@@ -1,0 +1,20 @@
+.nav {
+  grid-area: nav;
+  background-color: grey;
+  width: 150px;
+}
+
+.item {
+  font-family: Georgia, "Times New Roman", Times, serif;
+  line-height: 40px;
+  font-size: 25px;
+}
+
+.item a {
+  text-decoration: none;
+  color: black;
+}
+
+.active {
+  background-color: ghostwhite;
+}

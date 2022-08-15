@@ -1,0 +1,26 @@
+.img {
+      display: block;
+      margin-left: 40px;
+      margin-right: auto;
+      width: 200px;
+      height: 280px;
+  }
+  
+  .title {
+      text-align: center;
+      margin-left: 580px;
+      font-family: Georgia, 'Times New Roman', Times, serif;
+  }
+
+  .figcaption {
+    margin-left: 95px;
+    margin-right: auto;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 16px;
+  }
+  
+  .description {
+      font-family: Georgia, 'Times New Roman', Times, serif;
+      line-height:24px;
+      font-size: 18px;
+  }

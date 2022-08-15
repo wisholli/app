@@ -1,0 +1,10 @@
+.menu {
+    grid-area: content;
+    background-color: ghostwhite;
+  }
+
+.title {
+  text-align: center;
+  margin-left: 580px;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+}

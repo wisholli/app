@@ -1,4 +1,4 @@
-.App {
+/* .App {
   text-align: center;
 }
 
@@ -35,4 +35,13 @@
   to {
     transform: rotate(360deg);
   }
+} */
+
+.app-wrapper {
+  display: grid;
+  grid-template-areas: "header header" "nav content";
+  grid-template-rows: 60px 1fr;
+  grid-template-columns: 2fr 17fr;
+  grid-gap: 0px;
+  background-color: ghostwhite;
 }

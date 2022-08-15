@@ -1,55 +1,38 @@
-.app-wrapper {
-  display: grid;
-  width: 1200px;
-  grid-template-areas: "header header" "nav content";
-  grid-template-rows: 60px 1fr;
-  grid-template-columns: 2fr 10fr;
-  grid-gap: 10px;
+.App {
+  text-align: center;
 }
 
-.header {
-  grid-area: header;
-  background-color: gray;
-  width: 2000px;
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
 }
 
-.header img {
-  width: 65px;
-  height: 60px;
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
 }
 
-.nav {
-  grid-area: nav;
-  background-color: grey;
-  width: 150px;
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
 }
 
-.nav div {
-    font-family: Georgia, 'Times New Roman', Times, serif;
-    line-height: 40px;
-    font-size: 25px;
+.App-link {
+  color: #61dafb;
 }
 
-.content {
-  grid-area: content;
-  background-color: white;
-}
-
-.content img {
-    display: block;
-    margin-left: 570px;
-    margin-right: auto;
-    width: 600px;
-    height: 300px;
-}
-
-.content h1 {
-    text-align: center;
-    margin-left: 580px;
-    font-family: Georgia, 'Times New Roman', Times, serif;
-}
-
-.content p {
-    font-family: Georgia, 'Times New Roman', Times, serif;
-    font-size: 20px;
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }

@@ -1,5 +1,5 @@
 import "./App.css";
-import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Homepage from "./components/Homepage/Homepage";
 import Header from "./components/Header/Header";
 import Nav from "./components/Nav/Nav";
@@ -13,7 +13,8 @@ function App() {
         <Nav />
         <Routes>
           <Route exact path="/" element={<Homepage />}></Route>
-          <Route exact path="menu" element={<Menu />}></Route>
+          <Route path="menu" element={<Menu />}></Route>
+          <Route exact path="menu/:id" element={<h1 >item</h1>}></Route>
         </Routes>
       </div>
     </BrowserRouter>

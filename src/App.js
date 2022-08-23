@@ -6,7 +6,7 @@ import Nav from "./components/Nav/Nav";
 import Menu from "./components/Menu/Menu";
 import Testimonial from "./components/Testimonial/Testimonial";
 
-function App() {
+const App = (props) => {
   return (
     <BrowserRouter>
       <div className="app-wrapper">
@@ -14,9 +14,9 @@ function App() {
         <Nav />
         <Routes>
           <Route exact path="/" element={<Homepage />}></Route>
-          <Route path="menu" element={<Menu />}></Route>
+          <Route exact path="menu" element={<Menu />}></Route>
           <Route exact path="menu/:id" element={<h1 >item</h1>}></Route>
-          <Route exact path="testimonial" element={<Testimonial />}></Route>
+          <Route exact path="testimonial" element={<Testimonial testimonials = { props.state.testimonialPage.testimonials }/>}></Route>
         </Routes>
       </div>
     </BrowserRouter>

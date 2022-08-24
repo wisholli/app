@@ -5,13 +5,7 @@ const Dishes = (props) => {
     return(
     <div className='Dishes'>
         <div className={style.item}>
-            <Link to='borsh'>Borsh</Link>
-        </div>
-        <div className={style.item}>
-            <Link to='salat'>Salat</Link>
-        </div>
-        <div className={style.item}> 
-            <Link to='pasta'>Pasta</Link>
+            <Link to={ props.link }>{ props.name }</Link>
         </div>
     </div>
     );

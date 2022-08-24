@@ -16,7 +16,7 @@ const App = (props) => {
           <Route exact path="/" element={<Homepage />}></Route>
           <Route exact path="menu" element={<Menu />}></Route>
           <Route exact path="menu/:id" element={<h1 >item</h1>}></Route>
-          <Route exact path="testimonial" element={<Testimonial testimonials = { props.state.testimonialPage.testimonials }/>}></Route>
+          <Route exact path="testimonial" element={<Testimonial items = { props.state.testimonial.data }/>}></Route>
         </Routes>
       </div>
     </BrowserRouter>

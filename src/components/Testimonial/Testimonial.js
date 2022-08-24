@@ -3,7 +3,7 @@ import Post from "./Post/Post";
 
 const Testimonial = (props) => {
 
-    let testimonialElemets = props.testimonials
+    let testimonialElemets = props.items
 .map( testimonial => <Post message={testimonial.message}/>);
 
     return (

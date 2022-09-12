@@ -12,6 +12,7 @@ const Testimonial = (props) => {
     let addTestimonial = () => {
         let text = newTestimonial.current.value;
         props.addTestimonial(text)
+        newTestimonial.current.value = '';
     }
 
     return (

@@ -1,3 +1,5 @@
+import { rerenderEntireTree } from "../render";
+
 export let state = {
   testimonial: {
     data: [
@@ -63,4 +65,6 @@ export let addTestimonial = (textTestimonial) => {
     };
 
     state.testimonial.data.push(newTestimonial);
+
+    rerenderEntireTree(state);
 }

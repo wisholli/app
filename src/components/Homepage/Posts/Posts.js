@@ -1,11 +1,11 @@
 import style from './Post.module.css'
-import NewPost from "./NewPost/NewPost";
+import Post from "./Post/Post";
 import React from 'react';
 
-const Post = (props) => {
+const Posts = (props) => {
 
     let postElemets = props.items
-.map( post => <NewPost message={post.message}/>);
+.map( post => <Post message={post.message}/>);
 
     let newPost = React.createRef();
 
@@ -29,4 +29,4 @@ const Post = (props) => {
     );
 }
 
-export default Post
+export default Posts

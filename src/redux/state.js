@@ -44,3 +44,16 @@ export let addPost = (textPost) => {
 
     rerenderEntireTree(state);
 }
+
+export let addUser = (name) => {
+  let newUser = {
+    id: 4,
+    name,
+    img: "",
+    link: name
+  }
+
+  state.users.data.push(newUser);
+
+  rerenderEntireTree(state);
+}

@@ -1,11 +1,11 @@
 // import style from './Homepage.module.css'
-import Post from "./Post/Post";
+import Posts from "./Posts/Posts";
 
 const Homepage = (props) => {
     return (
         <div> 
           <div className='About'>
-              <Post items = {props.items} addPost = {props.addPost} />
+              <Posts items = {props.items} addPost = {props.addPost} />
           </div>
         </div>
     );

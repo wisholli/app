@@ -17,28 +17,7 @@ const Nav = () => {
           location.pathname === "/menu" ? style.active : null
         }`}
       >
-        <Link to="/menu">Menu</Link>
-      </div>
-      <div
-        className={`${style.item} ${
-          location.pathname === "/reservation" ? style.active : null
-        }`}
-      >
-        <Link to="/reservation">Reservation</Link>
-      </div>
-      <div
-        className={`${style.item} ${
-          location.pathname === "/history" ? style.active : null
-        }`}
-      >
-        <Link to="/history">History</Link>
-      </div>
-      <div
-        className={`${style.item} ${
-          location.pathname === "/testimonial" ? style.active : null
-        }`}
-      >
-        <Link to="/testimonial">Testimonial</Link>
+        <Link to="/message">Message</Link>
       </div>
     </nav>
   );

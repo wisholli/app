@@ -1,7 +1,7 @@
-import style from './Dishes.module.css'
+import style from './Users.module.css'
 import { Link } from 'react-router-dom';
 
-const Dishes = (props) => {
+const Users = (props) => {
     return(
     <div className='Dishes'>
         <div className={style.item}>
@@ -11,4 +11,4 @@ const Dishes = (props) => {
     );
 } 
 
-export default Dishes
+export default Users

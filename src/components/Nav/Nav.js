@@ -14,10 +14,31 @@ const Nav = () => {
       </div>
       <div
         className={`${style.item} ${
-          location.pathname === "/menu" ? style.active : null
+          location.pathname === "/message" ? style.active : null
         }`}
       >
         <Link to="/message">Message</Link>
+      </div>
+      <div
+        className={`${style.item} ${
+          location.pathname === "/news" ? style.active : null
+        }`}
+      >
+        <Link to="/news">News</Link>
+      </div>
+      <div
+        className={`${style.item} ${
+          location.pathname === "/music" ? style.active : null
+        }`}
+      >
+        <Link to="/music">Music</Link>
+      </div>
+      <div
+        className={`${style.item} ${
+          location.pathname === "/settings" ? style.active : null
+        }`}
+      >
+        <Link to="/settings">Settings</Link>
       </div>
     </nav>
   );

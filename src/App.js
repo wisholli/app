@@ -4,11 +4,16 @@ import Homepage from "./components/Homepage/Homepage";
 import Header from "./components/Header/Header";
 import Nav from "./components/Nav/Nav";
 import Message from "./components/Message/Mesage";
+import Musicpage from "./components/Music/Musicpage";
 import {
   addPost,
   deleteUser,
   searchUser,
   updateNewPostText,
+  searchMusic,
+  deleteMusic,
+  updateSearchUserName,
+  updateSearchMusicName,
 } from "./redux/state";
 
 const App = (props) => {
@@ -38,6 +43,21 @@ const App = (props) => {
                 items={props.state.users.data}
                 deleteUser={deleteUser}
                 searchUser={searchUser}
+                searchUserName={props.state.users.searchUserName}
+                updateSearchUserName={updateSearchUserName}
+              />
+            }
+          ></Route>
+          <Route
+            exact
+            path="/music"
+            element={
+              <Musicpage
+                items={props.state.music.data}
+                searchMusic={searchMusic}
+                deleteMusic={deleteMusic}
+                searchMusicName={props.state.music.searchMusicName}
+                updateSearchMusicName={updateSearchMusicName}
               />
             }
           ></Route>

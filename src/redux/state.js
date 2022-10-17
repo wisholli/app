@@ -32,10 +32,26 @@ export let state = {
         link: "lera",
       },
     ],
+    searchUserName: "",
+  },
+  music: {
+    data: [
+      {
+        id: 1,
+        name: "Weekend - Bright lights",
+      },
+      {
+        id: 2,
+        name: "Ghost - Marry on a cross",
+      },
+      {
+        id: 3,
+        name: "Maneskin - Beggin",
+      },
+    ],
+    searchMusicName: "",
   },
 };
-
-window.state = state;
 
 export let addPost = () => {
   let newPost = {
@@ -53,10 +69,44 @@ export let updateNewPostText = (newText) => {
   rerenderEntireTree(state);
 };
 
-export let searchUser = (name) => {
-  const newUsers = state.users.data.filter((user) => user.name === name);
+export let searchUser = () => {
+  const newUsers = state.users.data.filter(
+    (user) => user.name === state.users.searchUserName
+  );
   const newState = { ...state, users: { data: newUsers } };
+  state.users.searchUserName = "";
   rerenderEntireTree(newState);
+};
+
+export let updateSearchUserName = (newName) => {
+  state.users.searchUserName = newName;
+  rerenderEntireTree(state);
+};
+
+export let deleteUser = () => {
+  state.users.data.pop();
+
+  rerenderEntireTree(state);
+};
+
+export let searchMusic = () => {
+  const newMusic = state.music.data.filter(
+    (musicName) => musicName.name === state.music.searchMusicName
+  );
+  const newState = { ...state, music: { data: newMusic } };
+  state.music.searchMusicName = "";
+  rerenderEntireTree(newState);
+};
+
+export let updateSearchMusicName = (newName) => {
+  state.music.searchMusicName = newName;
+  rerenderEntireTree(state);
+};
+
+export let deleteMusic = () => {
+  state.music.data.pop();
+
+  rerenderEntireTree(state);
 };
 
 // export let addProduct = (name) => {
@@ -89,9 +139,3 @@ export let searchUser = (name) => {
 
 //   rerenderEntireTree(state);
 // };
-
-export let deleteUser = () => {
-  state.users.data.pop();
-
-  rerenderEntireTree(state);
-};

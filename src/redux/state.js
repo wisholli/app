@@ -1,4 +1,6 @@
-import { rerenderEntireTree } from "../render";
+let rerenderEntireTree = () => {
+  console.log("State has changed");
+};
 
 export let state = {
   posts: {
@@ -53,7 +55,7 @@ export let state = {
   },
 };
 
-export let addPost = () => {
+export const addPost = () => {
   let newPost = {
     id: 6,
     message: state.posts.newPostText,
@@ -64,12 +66,12 @@ export let addPost = () => {
   rerenderEntireTree(state);
 };
 
-export let updateNewPostText = (newText) => {
+export const updateNewPostText = (newText) => {
   state.posts.newPostText = newText;
   rerenderEntireTree(state);
 };
 
-export let searchUser = () => {
+export const searchUser = () => {
   const newUsers = state.users.data.filter(
     (user) => user.name === state.users.searchUserName
   );
@@ -78,18 +80,18 @@ export let searchUser = () => {
   rerenderEntireTree(newState);
 };
 
-export let updateSearchUserName = (newName) => {
+export const updateSearchUserName = (newName) => {
   state.users.searchUserName = newName;
   rerenderEntireTree(state);
 };
 
-export let deleteUser = () => {
+export const deleteUser = () => {
   state.users.data.pop();
 
   rerenderEntireTree(state);
 };
 
-export let searchMusic = () => {
+export const searchMusic = () => {
   const newMusic = state.music.data.filter(
     (musicName) => musicName.name === state.music.searchMusicName
   );
@@ -98,17 +100,20 @@ export let searchMusic = () => {
   rerenderEntireTree(newState);
 };
 
-export let updateSearchMusicName = (newName) => {
+export const updateSearchMusicName = (newName) => {
   state.music.searchMusicName = newName;
   rerenderEntireTree(state);
 };
 
-export let deleteMusic = () => {
+export const deleteMusic = () => {
   state.music.data.pop();
 
   rerenderEntireTree(state);
 };
 
+export const subscribe = (observer) => {
+  rerenderEntireTree = observer;
+};
 // export let addProduct = (name) => {
 //   let newProduct = {
 //     id: 5,

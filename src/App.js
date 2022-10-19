@@ -5,16 +5,7 @@ import Header from "./components/Header/Header";
 import Nav from "./components/Nav/Nav";
 import Message from "./components/Message/Mesage";
 import Musicpage from "./components/Music/Musicpage";
-import {
-  addPost,
-  deleteUser,
-  searchUser,
-  updateNewPostText,
-  searchMusic,
-  deleteMusic,
-  updateSearchUserName,
-  updateSearchMusicName,
-} from "./redux/state";
+import store from "./redux/state";
 
 const App = (props) => {
   return (
@@ -29,9 +20,9 @@ const App = (props) => {
             element={
               <Homepage
                 items={props.state.posts.data}
-                addPost={addPost}
+                addPost={store.addPost.bind(store)}
                 newPostText={props.state.posts.newPostText}
-                updateNewPostText={updateNewPostText}
+                updateNewPostText={store.updateNewPostText.bind(store)}
               />
             }
           ></Route>
@@ -41,10 +32,10 @@ const App = (props) => {
             element={
               <Message
                 items={props.state.users.data}
-                deleteUser={deleteUser}
-                searchUser={searchUser}
+                deleteUser={store.deleteUser.bind(store)}
+                searchUser={store.searchUser.bind(store)}
                 searchUserName={props.state.users.searchUserName}
-                updateSearchUserName={updateSearchUserName}
+                updateSearchUserName={store.updateSearchUserName.bind(store)}
               />
             }
           ></Route>
@@ -54,10 +45,10 @@ const App = (props) => {
             element={
               <Musicpage
                 items={props.state.music.data}
-                searchMusic={searchMusic}
-                deleteMusic={deleteMusic}
+                searchMusic={store.searchMusic.bind(store)}
+                deleteMusic={store.deleteMusic.bind(store)}
                 searchMusicName={props.state.music.searchMusicName}
-                updateSearchMusicName={updateSearchMusicName}
+                updateSearchMusicName={store.updateSearchMusicName.bind(store)}
               />
             }
           ></Route>

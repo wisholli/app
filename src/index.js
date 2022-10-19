@@ -1,5 +1,5 @@
 import reportWebVitals from "./reportWebVitals";
-import { state, subscribe } from "./redux/state";
+import store from "./redux/state";
 import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
@@ -9,13 +9,13 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 let rerenderEntireTree = (state) => {
   root.render(
     <React.StrictMode>
-      <App state={state} />
+      <App state={store.getState()} />
     </React.StrictMode>
   );
 };
 
-rerenderEntireTree(state);
+rerenderEntireTree(store.getState());
 
-subscribe(rerenderEntireTree);
+store.subscribe(rerenderEntireTree);
 
 reportWebVitals();

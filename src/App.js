@@ -20,9 +20,8 @@ const App = (props) => {
             element={
               <Homepage
                 items={props.state.posts.data}
-                addPost={store.addPost.bind(store)}
+                dispatch={store.dispatch.bind(store)}
                 newPostText={props.state.posts.newPostText}
-                updateNewPostText={store.updateNewPostText.bind(store)}
               />
             }
           ></Route>
@@ -32,10 +31,8 @@ const App = (props) => {
             element={
               <Message
                 items={props.state.users.data}
-                deleteUser={store.deleteUser.bind(store)}
-                searchUser={store.searchUser.bind(store)}
+                dispatch={store.dispatch.bind(store)}
                 searchUserName={props.state.users.searchUserName}
-                updateSearchUserName={store.updateSearchUserName.bind(store)}
               />
             }
           ></Route>
@@ -45,10 +42,8 @@ const App = (props) => {
             element={
               <Musicpage
                 items={props.state.music.data}
-                searchMusic={store.searchMusic.bind(store)}
-                deleteMusic={store.deleteMusic.bind(store)}
+                dispatch={store.dispatch.bind(store)}
                 searchMusicName={props.state.music.searchMusicName}
-                updateSearchMusicName={store.updateSearchMusicName.bind(store)}
               />
             }
           ></Route>

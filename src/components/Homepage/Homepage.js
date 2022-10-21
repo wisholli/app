@@ -8,9 +8,8 @@ const Homepage = (props) => {
       <div className="About">
         <Posts
           items={props.items}
-          addPost={props.addPost}
           newPostText={props.newPostText}
-          updateNewPostText={props.updateNewPostText}
+          dispatch={props.dispatch}
         />
       </div>
     </div>

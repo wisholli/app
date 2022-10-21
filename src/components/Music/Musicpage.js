@@ -8,16 +8,16 @@ const Musicpage = (props) => {
   let newMusic = React.createRef();
 
   let searchMusic = () => {
-    props.searchMusic();
+    props.dispatch({ type: "SEARCH-MUSIC" });
   };
 
   let deleteMusic = () => {
-    props.deleteMusic();
+    props.dispatch({ type: "DELETE-MUSIC" });
   };
 
   let onMusicChange = () => {
     let text = newMusic.current.value;
-    props.updateSearchMusicName(text);
+    props.dispatch({ type: "UPDATE-SEARCH-MUSIC-NAME", newName: text });
   };
 
   return (

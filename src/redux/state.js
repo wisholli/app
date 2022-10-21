@@ -51,62 +51,59 @@ let store = {
       searchMusicName: "",
     },
   },
-  getState() {
-    return this._state;
-  },
   _callSubscriber() {
     console.log("State has changed");
   },
-  addPost() {
-    let newPost = {
-      id: 6,
-      message: this._state.posts.newPostText,
-    };
-
-    this._state.posts.data.push(newPost);
-    this._state.posts.newPostText = "";
-    this._callSubscriber(this._state);
-  },
-  updateNewPostText(newText) {
-    this._state.posts.newPostText = newText;
-    this._callSubscriber(this._state);
-  },
-  searchUser() {
-    const newUsers = this._state.users.data.filter(
-      (user) => user.name === this._state.users.searchUserName
-    );
-    const newState = { ...this._state, users: { data: newUsers } };
-    this._state.users.searchUserName = "";
-    this._callSubscriber(newState);
-  },
-  updateSearchUserName(newName) {
-    this._state.users.searchUserName = newName;
-    this._callSubscriber(this._state);
-  },
-  deleteUser() {
-    this._state.users.data.pop();
-
-    this._callSubscriber(this._state);
-  },
-  searchMusic() {
-    const newMusic = this._state.music.data.filter(
-      (musicName) => musicName.name === this._state.music.searchMusicName
-    );
-    const newState = { ...this._state, music: { data: newMusic } };
-    this._state.music.searchMusicName = "";
-    this._callSubscriber(newState);
-  },
-  updateSearchMusicName(newName) {
-    this._state.music.searchMusicName = newName;
-    this._callSubscriber(this._state);
-  },
-  deleteMusic() {
-    this._state.music.data.pop();
-
-    this._callSubscriber(this._state);
+  getState() {
+    return this._state;
   },
   subscribe(observer) {
     this._callSubscriber = observer;
+  },
+  dispatch(action) {
+    // { type: 'ADD-POST' }
+    if (action.type === "ADD-POST") {
+      let newPost = {
+        id: 6,
+        message: this._state.posts.newPostText,
+      };
+
+      this._state.posts.data.push(newPost);
+      this._state.posts.newPostText = "";
+      this._callSubscriber(this._state);
+    } else if (action.type === "UPDATE-NEW-POST-TEXT") {
+      this._state.posts.newPostText = action.newText;
+      this._callSubscriber(this._state);
+    } else if (action.type === "SEARCH-USER") {
+      const newUsers = this._state.users.data.filter(
+        (user) => user.name === this._state.users.searchUserName
+      );
+      const newState = { ...this._state, users: { data: newUsers } };
+      this._state.users.searchUserName = "";
+      this._callSubscriber(newState);
+    } else if (action.type === "DELETE-USER") {
+      this._state.users.data.pop();
+      this._callSubscriber(this._state);
+    } else if (action.type === "UDATE-SEARCH-USER-NAME") {
+      this._state.users.searchUserName = action.newName;
+      this._callSubscriber(this._state);
+    } else if (action.type === "SEARCH-MUSIC") {
+      console.log("here", action);
+      const newMusic = this._state.music.data.filter(
+        (musicName) => musicName.name === this._state.music.searchMusicName
+      );
+      /*     const newState = { ...this._state, music: { data: newMusic } }; */
+      this._state.music.searchMusicName = "";
+      this._state.music.data = newMusic;
+
+      this._callSubscriber(this._state);
+    } else if (action.type === "DELETE-MUSIC") {
+      this._state.music.data.pop();
+      this._callSubscriber(this._state);
+    } else if (action.type === "UPDATE-SEARCH-MUSIC-NAME") {
+      this._state.music.searchMusicName = action.newName;
+      this._callSubscriber(this._state);
+    }
   },
 };
 

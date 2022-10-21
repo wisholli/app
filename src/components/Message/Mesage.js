@@ -10,16 +10,16 @@ const Message = (props) => {
   let newUser = React.createRef();
 
   let searchUser = () => {
-    props.searchUser();
+    props.dispatch({ type: "SEARCH-USER" });
   };
 
   let deleteUser = () => {
-    props.deleteUser();
+    props.dispatch({ type: "DELETE-USER" });
   };
 
   let onUserGhange = () => {
     let text = newUser.current.value;
-    props.updateSearchUserName(text);
+    props.dispatch({ type: "UDATE-SEARCH-USER-NAME", newName: text });
   };
 
   return (

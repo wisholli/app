@@ -1,4 +1,10 @@
 import React from "react";
+import {
+  addNewsActionCreator,
+  searchNewsActionCreator,
+  deleteNewsActionCreator,
+  updateSearchNewsActionCreator,
+} from "../../redux/state";
 import News from "./News/News";
 
 const NewsPage = (props) => {
@@ -7,20 +13,20 @@ const NewsPage = (props) => {
   let newNews = React.createRef();
 
   let addNews = () => {
-    props.dispatch({ type: "ADD-NEWS" });
+    props.dispatch(addNewsActionCreator());
   };
 
   let searchNews = () => {
-    props.dispatch({ type: "SEARCH-NEWS" });
+    props.dispatch(searchNewsActionCreator());
   };
 
   let deleteNews = () => {
-    props.dispatch({ type: "DELETE-NEWS" });
+    props.dispatch(deleteNewsActionCreator());
   };
 
   let onNewsChange = () => {
     let text = newNews.current.value;
-    props.dispatch({ type: "UPDATE-SEARCH-NEWS", newName: text });
+    props.dispatch(updateSearchNewsActionCreator(text));
   };
   return (
     <div>

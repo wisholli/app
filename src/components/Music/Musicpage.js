@@ -1,4 +1,9 @@
 import React from "react";
+import {
+  deleteMusicActionCreator,
+  searchMusicActionCreator,
+  updateSearchMusicNameActionCreator,
+} from "../../redux/state";
 import style from "./Musicpage.module.css";
 import Songname from "./Songsname/Songsname";
 
@@ -8,16 +13,16 @@ const Musicpage = (props) => {
   let newMusic = React.createRef();
 
   let searchMusic = () => {
-    props.dispatch({ type: "SEARCH-MUSIC" });
+    props.dispatch(searchMusicActionCreator());
   };
 
   let deleteMusic = () => {
-    props.dispatch({ type: "DELETE-MUSIC" });
+    props.dispatch(deleteMusicActionCreator());
   };
 
   let onMusicChange = () => {
     let text = newMusic.current.value;
-    props.dispatch({ type: "UPDATE-SEARCH-MUSIC-NAME", newName: text });
+    props.dispatch(updateSearchMusicNameActionCreator(text));
   };
 
   return (

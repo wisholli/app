@@ -1,6 +1,11 @@
 import style from "./Message.module.css";
 import Users from "./Users/Users";
 import React from "react";
+import {
+  deleteUserActionCreator,
+  searchUserActionCreator,
+  updateSearchUserNameActionCreator,
+} from "../../redux/state";
 
 const Message = (props) => {
   let info = props.items.map((info) => (
@@ -10,16 +15,16 @@ const Message = (props) => {
   let newUser = React.createRef();
 
   let searchUser = () => {
-    props.dispatch({ type: "SEARCH-USER" });
+    props.dispatch(searchUserActionCreator());
   };
 
   let deleteUser = () => {
-    props.dispatch({ type: "DELETE-USER" });
+    props.dispatch(deleteUserActionCreator());
   };
 
   let onUserGhange = () => {
     let text = newUser.current.value;
-    props.dispatch({ type: "UDATE-SEARCH-USER-NAME", newName: text });
+    props.dispatch(updateSearchUserNameActionCreator(text));
   };
 
   return (

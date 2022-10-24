@@ -1,3 +1,16 @@
+const ADD_POST = "ADD-POST";
+const UPDATE_NEW_POST_TEXT = "UPDATE-NEW-POST-TEXT";
+const SEARCH_USER = "SEARCH-USER";
+const DELETE_USER = "DELETE-USER";
+const UDATE_SEARCH_USER_NAME = "UDATE-SEARCH-USER-NAME";
+const SEARCH_MUSIC = "SEARCH-MUSIC";
+const DELETE_MUSIC = "DELETE-MUSIC";
+const UPDATE_SEARCH_MUSIC_NAME = "UPDATE-SEARCH-MUSIC-NAME";
+const ADD_NEWS = "ADD-NEWS";
+const SEARCH_NEWS = "SEARCH-NEWS";
+const DELETE_NEWS = "DELETE-NEWS";
+const UPDATE_SEARCH_NEWS = "UPDATE-SEARCH-NEWS";
+
 let store = {
   _state: {
     posts: {
@@ -82,7 +95,7 @@ let store = {
   },
   dispatch(action) {
     // { type: 'ADD-POST' }
-    if (action.type === "ADD-POST") {
+    if (action.type === ADD_POST) {
       let newPost = {
         id: 6,
         message: this._state.posts.newPostText,
@@ -91,24 +104,23 @@ let store = {
       this._state.posts.data.push(newPost);
       this._state.posts.newPostText = "";
       this._callSubscriber(this._state);
-    } else if (action.type === "UPDATE-NEW-POST-TEXT") {
-      this._state.posts.newPostText = action.newText;
+    } else if (action.type === UPDATE_NEW_POST_TEXT) {
+      this._state.posts.newPostText = action.text;
       this._callSubscriber(this._state);
-    } else if (action.type === "SEARCH-USER") {
+    } else if (action.type === SEARCH_USER) {
       const newUsers = this._state.users.data.filter(
         (user) => user.name === this._state.users.searchUserName
       );
       this._state.users.data = newUsers;
       this._state.users.searchUserName = "";
       this._callSubscriber(this._state);
-    } else if (action.type === "DELETE-USER") {
+    } else if (action.type === DELETE_USER) {
       this._state.users.data.pop();
       this._callSubscriber(this._state);
-    } else if (action.type === "UDATE-SEARCH-USER-NAME") {
-      this._state.users.searchUserName = action.newName;
+    } else if (action.type === UDATE_SEARCH_USER_NAME) {
+      this._state.users.searchUserName = action.text;
       this._callSubscriber(this._state);
-    } else if (action.type === "SEARCH-MUSIC") {
-      console.log("here", action);
+    } else if (action.type === SEARCH_MUSIC) {
       const newMusic = this._state.music.data.filter(
         (musicName) => musicName.name === this._state.music.searchMusicName
       );
@@ -117,13 +129,13 @@ let store = {
       this._state.music.data = newMusic;
 
       this._callSubscriber(this._state);
-    } else if (action.type === "DELETE-MUSIC") {
+    } else if (action.type === DELETE_MUSIC) {
       this._state.music.data.pop();
       this._callSubscriber(this._state);
-    } else if (action.type === "UPDATE-SEARCH-MUSIC-NAME") {
-      this._state.music.searchMusicName = action.newName;
+    } else if (action.type === UPDATE_SEARCH_MUSIC_NAME) {
+      this._state.music.searchMusicName = action.text;
       this._callSubscriber(this._state);
-    } else if (action.type === "ADD-NEWS") {
+    } else if (action.type === ADD_NEWS) {
       let newNews = {
         id: 4,
         content: this._state.news.searchNews,
@@ -132,7 +144,7 @@ let store = {
       this._state.news.data.push(newNews);
       this._state.news.searchNews = "";
       this._callSubscriber(this._state);
-    } else if (action.type === "SEARCH-NEWS") {
+    } else if (action.type === SEARCH_NEWS) {
       const newNews = this._state.news.data.filter(
         (news) => news.content === this._state.news.searchNews
       );
@@ -141,15 +153,56 @@ let store = {
       this._state.news.searchNews = "";
 
       this._callSubscriber(this._state);
-    } else if (action.type === "DELETE-NEWS") {
+    } else if (action.type === DELETE_NEWS) {
       this._state.news.data.pop();
       this._callSubscriber(this._state);
-    } else if (action.type === "UPDATE-SEARCH-NEWS") {
-      this._state.news.searchNews = action.newName;
+    } else if (action.type === UPDATE_SEARCH_NEWS) {
+      this._state.news.searchNews = action.text;
       this._callSubscriber(this._state);
     }
   },
 };
+
+export const addPostActionCreator = () => ({
+  type: ADD_POST,
+});
+export const updateNewPostTextActionCreator = (text) => ({
+  type: UPDATE_NEW_POST_TEXT,
+  text,
+});
+export const searchUserActionCreator = () => ({
+  type: SEARCH_USER,
+});
+export const deleteUserActionCreator = () => ({
+  type: DELETE_USER,
+});
+export const updateSearchUserNameActionCreator = (text) => ({
+  type: UDATE_SEARCH_USER_NAME,
+  text,
+});
+export const searchMusicActionCreator = () => ({
+  type: SEARCH_MUSIC,
+});
+export const deleteMusicActionCreator = () => ({
+  type: DELETE_MUSIC,
+});
+export const updateSearchMusicNameActionCreator = (text) => ({
+  type: UPDATE_SEARCH_MUSIC_NAME,
+  text,
+});
+export const addNewsActionCreator = () => ({
+  type: ADD_NEWS,
+});
+export const searchNewsActionCreator = () => ({
+  type: SEARCH_NEWS,
+});
+export const deleteNewsActionCreator = () => ({
+  type: DELETE_NEWS,
+});
+export const updateSearchNewsActionCreator = (text) => ({
+  type: UPDATE_SEARCH_NEWS,
+  text,
+});
 
 export default store;
 window.store = store;

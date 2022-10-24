@@ -6,6 +6,7 @@ import Nav from "./components/Nav/Nav";
 import Message from "./components/Message/Mesage";
 import Musicpage from "./components/Music/Musicpage";
 import store from "./redux/state";
+import NewsPage from "./components/NewsPage/NewsPage";
 
 const App = (props) => {
   return (
@@ -44,6 +45,17 @@ const App = (props) => {
                 items={props.state.music.data}
                 dispatch={store.dispatch.bind(store)}
                 searchMusicName={props.state.music.searchMusicName}
+              />
+            }
+          ></Route>
+          <Route
+            exact
+            path="/news"
+            element={
+              <NewsPage
+                items={props.state.news.data}
+                dispatch={store.dispatch.bind(store)}
+                searchNews={props.state.news.searchNews}
               />
             }
           ></Route>

@@ -50,6 +50,26 @@ let store = {
       ],
       searchMusicName: "",
     },
+    news: {
+      data: [
+        {
+          id: 1,
+          // user: "ItGroup",
+          content: "Article about react",
+        },
+        {
+          id: 2,
+          // user: "CookTogether",
+          content: "How to cook borsh",
+        },
+        {
+          id: 3,
+          // user: "NewYorkTimes",
+          content: "Breaking news",
+        },
+      ],
+      searchNews: "",
+    },
   },
   _callSubscriber() {
     console.log("State has changed");
@@ -78,9 +98,9 @@ let store = {
       const newUsers = this._state.users.data.filter(
         (user) => user.name === this._state.users.searchUserName
       );
-      const newState = { ...this._state, users: { data: newUsers } };
+      this._state.users.data = newUsers;
       this._state.users.searchUserName = "";
-      this._callSubscriber(newState);
+      this._callSubscriber(this._state);
     } else if (action.type === "DELETE-USER") {
       this._state.users.data.pop();
       this._callSubscriber(this._state);
@@ -102,6 +122,30 @@ let store = {
       this._callSubscriber(this._state);
     } else if (action.type === "UPDATE-SEARCH-MUSIC-NAME") {
       this._state.music.searchMusicName = action.newName;
+      this._callSubscriber(this._state);
+    } else if (action.type === "ADD-NEWS") {
+      let newNews = {
+        id: 4,
+        content: this._state.news.searchNews,
+      };
+
+      this._state.news.data.push(newNews);
+      this._state.news.searchNews = "";
+      this._callSubscriber(this._state);
+    } else if (action.type === "SEARCH-NEWS") {
+      const newNews = this._state.news.data.filter(
+        (news) => news.content === this._state.news.searchNews
+      );
+
+      this._state.news.data = newNews;
+      this._state.news.searchNews = "";
+
+      this._callSubscriber(this._state);
+    } else if (action.type === "DELETE-NEWS") {
+      this._state.news.data.pop();
+      this._callSubscriber(this._state);
+    } else if (action.type === "UPDATE-SEARCH-NEWS") {
+      this._state.news.searchNews = action.newName;
       this._callSubscriber(this._state);
     }
   },

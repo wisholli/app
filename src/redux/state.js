@@ -1,3 +1,9 @@
+import messageReducer from "./messageReducer";
+import musicReducer from "./musicReducer";
+import newsReducer from "./newsReducer";
+import postsReducer from "./postsReducer";
+import usersReducer from "./usersReducer";
+
 const ADD_POST = "ADD-POST";
 const UPDATE_NEW_POST_TEXT = "UPDATE-NEW-POST-TEXT";
 const SEARCH_USER = "SEARCH-USER";
@@ -113,84 +119,13 @@ let store = {
     this._callSubscriber = observer;
   },
   dispatch(action) {
-    // { type: 'ADD-POST' }
-    if (action.type === ADD_POST) {
-      let newPost = {
-        id: 6,
-        message: this._state.posts.newPostText,
-      };
+    this._state.posts = postsReducer(this._state.posts, action);
+    this._state.users = usersReducer(this._state.users, action);
+    this._state.message = messageReducer(this._state.message, action);
+    this._state.music = musicReducer(this._state.music, action);
+    this._state.news = newsReducer(this._state.news, action);
 
-      this._state.posts.data.push(newPost);
-      this._state.posts.newPostText = "";
-      this._callSubscriber(this._state);
-    } else if (action.type === UPDATE_NEW_POST_TEXT) {
-      this._state.posts.newPostText = action.text;
-      this._callSubscriber(this._state);
-    } else if (action.type === SEARCH_USER) {
-      const newUsers = this._state.users.data.filter(
-        (user) => user.name === this._state.users.searchUserName
-      );
-      this._state.users.data = newUsers;
-      this._state.users.searchUserName = "";
-      this._callSubscriber(this._state);
-    } else if (action.type === DELETE_USER) {
-      this._state.users.data.pop();
-      this._callSubscriber(this._state);
-    } else if (action.type === UDATE_SEARCH_USER_NAME) {
-      this._state.users.searchUserName = action.text;
-      this._callSubscriber(this._state);
-    } else if (action.type === SEARCH_MUSIC) {
-      const newMusic = this._state.music.data.filter(
-        (musicName) => musicName.name === this._state.music.searchMusicName
-      );
-      /*     const newState = { ...this._state, music: { data: newMusic } }; */
-      this._state.music.searchMusicName = "";
-      this._state.music.data = newMusic;
-
-      this._callSubscriber(this._state);
-    } else if (action.type === DELETE_MUSIC) {
-      this._state.music.data.pop();
-      this._callSubscriber(this._state);
-    } else if (action.type === UPDATE_SEARCH_MUSIC_NAME) {
-      this._state.music.searchMusicName = action.text;
-      this._callSubscriber(this._state);
-    } else if (action.type === ADD_NEWS) {
-      let newNews = {
-        id: 4,
-        content: this._state.news.searchNews,
-      };
-
-      this._state.news.data.push(newNews);
-      this._state.news.searchNews = "";
-      this._callSubscriber(this._state);
-    } else if (action.type === SEARCH_NEWS) {
-      const newNews = this._state.news.data.filter(
-        (news) => news.content === this._state.news.searchNews
-      );
-
-      this._state.news.data = newNews;
-      this._state.news.searchNews = "";
-
-      this._callSubscriber(this._state);
-    } else if (action.type === DELETE_NEWS) {
-      this._state.news.data.pop();
-      this._callSubscriber(this._state);
-    } else if (action.type === UPDATE_SEARCH_NEWS) {
-      this._state.news.searchNews = action.text;
-      this._callSubscriber(this._state);
-    } else if (action.type === SEND_MESSAGE) {
-      let newMessage = {
-        id: 4,
-        message: this._state.message.newMessageText,
-      };
-
-      this._state.message.data.push(newMessage);
-      this._state.message.newMessageText = "";
-      this._callSubscriber(this._state);
-    } else if (action.type === UDATE_NEW_MESSAGE_TEXT) {
-      this._state.message.newMessageText = action.text;
-      this._callSubscriber(this._state);
-    }
+    this._callSubscriber(this._state);
   },
 };
 

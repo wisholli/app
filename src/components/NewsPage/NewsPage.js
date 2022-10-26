@@ -8,7 +8,9 @@ import {
 import News from "./News/News";
 
 const NewsPage = (props) => {
-  let news = props.items.map((news) => <News news={news.content} />);
+  let newsData = props.store.getState().news;
+
+  let news = newsData.data.map((news) => <News news={news.content} />);
 
   let newNews = React.createRef();
 
@@ -35,7 +37,7 @@ const NewsPage = (props) => {
         <textarea
           onChange={onNewsChange}
           ref={newNews}
-          value={props.searchNews}
+          value={newsData.searchNews}
         />
         <button onClick={addNews}>Add news</button>
         <button onClick={searchNews}>Search news</button>

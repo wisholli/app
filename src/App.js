@@ -20,9 +20,8 @@ const App = (props) => {
             path="/"
             element={
               <Homepage
-                items={props.state.posts.data}
+                store={props.store}
                 dispatch={store.dispatch.bind(store)}
-                newPostText={props.state.posts.newPostText}
               />
             }
           ></Route>
@@ -41,9 +40,8 @@ const App = (props) => {
             path="/music"
             element={
               <Musicpage
-                items={props.state.music.data}
+                store={props.store}
                 dispatch={store.dispatch.bind(store)}
-                searchMusicName={props.state.music.searchMusicName}
               />
             }
           ></Route>
@@ -52,9 +50,8 @@ const App = (props) => {
             path="/news"
             element={
               <NewsPage
-                items={props.state.news.data}
+                store={props.store}
                 dispatch={store.dispatch.bind(store)}
-                searchNews={props.state.news.searchNews}
               />
             }
           ></Route>

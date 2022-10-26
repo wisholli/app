@@ -6,11 +6,7 @@ const Homepage = (props) => {
   return (
     <div>
       <div className="About">
-        <Posts
-          items={props.items}
-          newPostText={props.newPostText}
-          dispatch={props.dispatch}
-        />
+        <Posts store={props.store} dispatch={props.dispatch} />
       </div>
     </div>
   );

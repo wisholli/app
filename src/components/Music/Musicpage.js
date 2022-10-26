@@ -8,7 +8,9 @@ import style from "./Musicpage.module.css";
 import Songname from "./Songsname/Songsname";
 
 const Musicpage = (props) => {
-  let songName = props.items.map((name) => <Songname songname={name.name} />);
+  let music = props.store.getState().music;
+
+  let songName = music.data.map((name) => <Songname songname={name.name} />);
 
   let newMusic = React.createRef();
 
@@ -32,7 +34,7 @@ const Musicpage = (props) => {
         <textarea
           onChange={onMusicChange}
           ref={newMusic}
-          value={props.searchMusicName}
+          value={music.searchMusicName}
         />
         <button onClick={searchMusic}>Search music</button>
         <button onClick={deleteMusic}>Delete music</button>

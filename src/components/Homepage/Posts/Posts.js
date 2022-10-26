@@ -7,7 +7,9 @@ import {
 } from "../../../redux/state";
 
 const Posts = (props) => {
-  let postElemets = props.items.map((post) => <Post message={post.message} />);
+  let posts = props.store.getState().posts;
+
+  let postElemets = posts.data.map((post) => <Post message={post.message} />);
 
   let newPost = React.createRef();
 
@@ -27,7 +29,7 @@ const Posts = (props) => {
         <textarea
           onChange={onPostChange}
           ref={newPost}
-          value={props.newPostText}
+          value={posts.newPostText}
           className={style.textarea}
         />
         <button onClick={addPost} className={style.button}>

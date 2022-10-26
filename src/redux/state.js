@@ -10,6 +10,8 @@ const ADD_NEWS = "ADD-NEWS";
 const SEARCH_NEWS = "SEARCH-NEWS";
 const DELETE_NEWS = "DELETE-NEWS";
 const UPDATE_SEARCH_NEWS = "UPDATE-SEARCH-NEWS";
+const SEND_MESSAGE = "SEND-MESSAGE";
+const UDATE_NEW_MESSAGE_TEXT = "UDATE-NEW-MESSAGE-TEXT";
 
 let store = {
   _state: {
@@ -45,6 +47,23 @@ let store = {
         },
       ],
       searchUserName: "",
+    },
+    message: {
+      data: [
+        {
+          id: 1,
+          message: "Hi",
+        },
+        {
+          id: 2,
+          message: "Have a nice day",
+        },
+        {
+          id: 3,
+          message: "Look at my dog",
+        },
+      ],
+      newMessageText: "",
     },
     music: {
       data: [
@@ -159,6 +178,18 @@ let store = {
     } else if (action.type === UPDATE_SEARCH_NEWS) {
       this._state.news.searchNews = action.text;
       this._callSubscriber(this._state);
+    } else if (action.type === SEND_MESSAGE) {
+      let newMessage = {
+        id: 4,
+        message: this._state.message.newMessageText,
+      };
+
+      this._state.message.data.push(newMessage);
+      this._state.message.newMessageText = "";
+      this._callSubscriber(this._state);
+    } else if (action.type === UDATE_NEW_MESSAGE_TEXT) {
+      this._state.message.newMessageText = action.text;
+      this._callSubscriber(this._state);
     }
   },
 };
@@ -201,6 +232,13 @@ export const deleteNewsActionCreator = () => ({
 });
 export const updateSearchNewsActionCreator = (text) => ({
   type: UPDATE_SEARCH_NEWS,
+  text,
+});
+export const sendMessageActionCreator = () => ({
+  type: SEND_MESSAGE,
+});
+export const updateNewMessageTextActionCreator = (text) => ({
+  type: UDATE_NEW_MESSAGE_TEXT,
   text,
 });
 

@@ -31,9 +31,8 @@ const App = (props) => {
             path="/message"
             element={
               <Message
-                items={props.state.users.data}
+                store={props.store}
                 dispatch={store.dispatch.bind(store)}
-                searchUserName={props.state.users.searchUserName}
               />
             }
           ></Route>

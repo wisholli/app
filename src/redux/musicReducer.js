@@ -2,7 +2,25 @@ const SEARCH_MUSIC = "SEARCH-MUSIC";
 const DELETE_MUSIC = "DELETE-MUSIC";
 const UPDATE_SEARCH_MUSIC_NAME = "UPDATE-SEARCH-MUSIC-NAME";
 
-const musicReducer = (state, action) => {
+let initialState = {
+  data: [
+    {
+      id: 1,
+      name: "Weekend - Bright lights",
+    },
+    {
+      id: 2,
+      name: "Ghost - Marry on a cross",
+    },
+    {
+      id: 3,
+      name: "Maneskin - Beggin",
+    },
+  ],
+  searchMusicName: "",
+};
+
+const musicReducer = (state = initialState, action) => {
   switch (action.type) {
     case SEARCH_MUSIC:
       const newMusic = state.data.filter(
@@ -22,4 +40,16 @@ const musicReducer = (state, action) => {
       return state;
   }
 };
+
+export const searchMusicActionCreator = () => ({
+  type: SEARCH_MUSIC,
+});
+export const deleteMusicActionCreator = () => ({
+  type: DELETE_MUSIC,
+});
+export const updateSearchMusicNameActionCreator = (text) => ({
+  type: UPDATE_SEARCH_MUSIC_NAME,
+  text,
+});
+
 export default musicReducer;

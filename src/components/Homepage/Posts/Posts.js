@@ -4,7 +4,7 @@ import React from "react";
 import {
   addPostActionCreator,
   updateNewPostTextActionCreator,
-} from "../../../redux/state";
+} from "../../../redux/postsReducer";
 
 const Posts = (props) => {
   let posts = props.store.getState().posts;

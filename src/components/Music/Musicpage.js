@@ -3,7 +3,7 @@ import {
   deleteMusicActionCreator,
   searchMusicActionCreator,
   updateSearchMusicNameActionCreator,
-} from "../../redux/state";
+} from "../../redux/musicReducer";
 import style from "./Musicpage.module.css";
 import Songname from "./Songsname/Songsname";
 

@@ -4,10 +4,12 @@ import React from "react";
 import {
   deleteUserActionCreator,
   searchUserActionCreator,
+  updateSearchUserNameActionCreator,
+} from "../../redux/usersReducer";
+import {
   sendMessageActionCreator,
   updateNewMessageTextActionCreator,
-  updateSearchUserNameActionCreator,
-} from "../../redux/state";
+} from "../../redux/messageReducer";
 import Messages from "./Messages/Messages";
 
 const Message = (props) => {

@@ -5,7 +5,7 @@ import Header from "./components/Header/Header";
 import Nav from "./components/Nav/Nav";
 import Message from "./components/Message/Mesage";
 import Musicpage from "./components/Music/Musicpage";
-import store from "./redux/state";
+import store from "./redux/reduxStore";
 import NewsPage from "./components/NewsPage/NewsPage";
 
 const App = (props) => {

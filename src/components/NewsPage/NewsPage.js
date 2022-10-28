@@ -4,7 +4,7 @@ import {
   searchNewsActionCreator,
   deleteNewsActionCreator,
   updateSearchNewsActionCreator,
-} from "../../redux/state";
+} from "../../redux/newsReducer";
 import News from "./News/News";
 
 const NewsPage = (props) => {

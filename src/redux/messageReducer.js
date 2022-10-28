@@ -1,7 +1,25 @@
 const SEND_MESSAGE = "SEND-MESSAGE";
 const UDATE_NEW_MESSAGE_TEXT = "UDATE-NEW-MESSAGE-TEXT";
 
-const messageReducer = (state, action) => {
+let initialState = {
+  data: [
+    {
+      id: 1,
+      message: "Hi",
+    },
+    {
+      id: 2,
+      message: "Have a nice day",
+    },
+    {
+      id: 3,
+      message: "Look at my dog",
+    },
+  ],
+  newMessageText: "",
+};
+
+const messageReducer = (state = initialState, action) => {
   switch (action.type) {
     case SEND_MESSAGE:
       let newMessage = {
@@ -19,5 +37,13 @@ const messageReducer = (state, action) => {
       return state;
   }
 };
+
+export const sendMessageActionCreator = () => ({
+  type: SEND_MESSAGE,
+});
+export const updateNewMessageTextActionCreator = (text) => ({
+  type: UDATE_NEW_MESSAGE_TEXT,
+  text,
+});
 
 export default messageReducer;

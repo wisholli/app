@@ -1,51 +1,39 @@
 import style from "./Message.module.css";
 import Users from "./Users/Users";
 import React from "react";
-import {
-  deleteUserActionCreator,
-  searchUserActionCreator,
-  updateSearchUserNameActionCreator,
-} from "../../redux/usersReducer";
-import {
-  sendMessageActionCreator,
-  updateNewMessageTextActionCreator,
-} from "../../redux/messageReducer";
 import Messages from "./Messages/Messages";
 
 const Message = (props) => {
-  let mess = props.store.getState().message;
-  let users = props.store.getState().users;
-
-  let info = users.data.map((info) => (
+  let info = props.users.map((info) => (
     <Users name={info.name} link={info.link} />
   ));
 
-  let message = mess.data.map((message) => (
+  let message = props.message.map((message) => (
     <Messages message={message.message} />
   ));
 
   let newUser = React.createRef();
 
-  let searchUser = () => {
-    props.dispatch(searchUserActionCreator());
+  let onSearchUser = () => {
+    props.searchUser();
   };
 
-  let deleteUser = () => {
-    props.dispatch(deleteUserActionCreator());
+  let onDeleteUser = () => {
+    props.deleteUser();
   };
 
   let onUserGhange = () => {
     let text = newUser.current.value;
-    props.dispatch(updateSearchUserNameActionCreator(text));
+    props.userGhange(text);
   };
 
-  let sendMessage = () => {
-    props.dispatch(sendMessageActionCreator());
+  let onSendMessage = () => {
+    props.sendMessage();
   };
 
   let onMessageGhange = (e) => {
     let text = e.target.value;
-    props.dispatch(updateNewMessageTextActionCreator(text));
+    props.messageGhange(text);
   };
 
   return (
@@ -54,19 +42,19 @@ const Message = (props) => {
       <textarea
         onChange={onUserGhange}
         ref={newUser}
-        value={users.searchUserName}
+        value={props.searchUserName}
         className={style.textarea}
       ></textarea>
-      <button onClick={searchUser} className={style.button}>
+      <button onClick={onSearchUser} className={style.button}>
         Search user
       </button>
-      <button onClick={deleteUser}>Delete user</button>
+      <button onClick={onDeleteUser}>Delete user</button>
       <textarea
         onChange={onMessageGhange}
-        value={mess.newMessageText}
+        value={props.newMessageText}
         className={style.textarea}
       ></textarea>
-      <button onClick={sendMessage}>Send message</button>
+      <button onClick={onSendMessage}>Send message</button>
       {info}
       {message}
     </div>

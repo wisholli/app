@@ -3,10 +3,10 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Homepage from "./components/Homepage/Homepage";
 import Header from "./components/Header/Header";
 import Nav from "./components/Nav/Nav";
-import Message from "./components/Message/Mesage";
 import Musicpage from "./components/Music/Musicpage";
 import store from "./redux/reduxStore";
 import NewsPage from "./components/NewsPage/NewsPage";
+import MesageContainer from "./components/Message/MesageContainer";
 
 const App = (props) => {
   return (
@@ -21,7 +21,7 @@ const App = (props) => {
             element={
               <Homepage
                 store={props.store}
-                dispatch={store.dispatch.bind(store)}
+                // dispatch={store.dispatch.bind(store)}
               />
             }
           ></Route>
@@ -29,9 +29,9 @@ const App = (props) => {
             exact
             path="/message"
             element={
-              <Message
+              <MesageContainer
                 store={props.store}
-                dispatch={store.dispatch.bind(store)}
+                // dispatch={store.dispatch.bind(store)}
               />
             }
           ></Route>

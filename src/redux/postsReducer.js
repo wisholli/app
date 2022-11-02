@@ -24,9 +24,9 @@ const postsReducer = (state = initialState, action) => {
       state.newPostText = "";
       return state;
     case UPDATE_NEW_POST_TEXT:
-      /* state.newPostText = action.text; */
-      /* return state; */
-      return { ...state, newPostText: action.text };
+      state.newPostText = action.text;
+      return state;
+    // return { ...state, newPostText: action.text };
     default:
       return state;
   }

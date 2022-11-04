@@ -5,7 +5,7 @@ import Messages from "./Messages/Messages";
 
 const Message = (props) => {
   let info = props.users.map((info) => (
-    <Users name={info.name} link={info.link} />
+    <Users key={info.id} name={info.name} link={info.link} />
   ));
 
   let message = props.message.map((message) => (

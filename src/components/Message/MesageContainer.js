@@ -1,20 +1,18 @@
 import {
+  sendMessageActionCreator,
+  updateNewMessageTextActionCreator,
   deleteUserActionCreator,
   searchUserActionCreator,
   updateSearchUserNameActionCreator,
-} from "../../redux/usersReducer";
-import {
-  sendMessageActionCreator,
-  updateNewMessageTextActionCreator,
 } from "../../redux/messageReducer";
 import Message from "./Mesage";
 import { connect } from "react-redux";
 
 let mapStateToProps = (state) => {
   return {
-    message: state.message.data,
-    users: state.users.data,
-    searchUserName: state.users.searchUserName,
+    message: state.message.messages,
+    users: state.message.users,
+    searchUserName: state.message.searchUserName,
     newMessageText: state.message.newMessageText,
   };
 };

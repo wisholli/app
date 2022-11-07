@@ -7,7 +7,7 @@ const Homepage = (props) => {
   return (
     <div>
       <div className="About">
-        <PostsContainer store={props.store} />
+        <PostsContainer />
       </div>
     </div>
   );

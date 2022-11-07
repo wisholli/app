@@ -1,4 +1,5 @@
 import { combineReducers, legacy_createStore as createStore } from "redux";
+import findUsersReducer from "./findUsersReducer";
 import messageReducer from "./messageReducer";
 import musicReducer from "./musicReducer";
 import newsReducer from "./newsReducer";
@@ -9,6 +10,7 @@ let reducers = combineReducers({
   message: messageReducer,
   music: musicReducer,
   news: newsReducer,
+  findUsers: findUsersReducer,
 });
 
 let store = createStore(reducers);

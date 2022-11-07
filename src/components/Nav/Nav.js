@@ -40,6 +40,13 @@ const Nav = () => {
       >
         <Link to="/settings">Settings</Link>
       </div>
+      <div
+        className={`${style.item} ${
+          location.pathname === "/findusers" ? style.active : null
+        }`}
+      >
+        <Link to="/findusers">Find user</Link>
+      </div>
     </nav>
   );
 };

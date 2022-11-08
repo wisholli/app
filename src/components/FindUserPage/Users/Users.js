@@ -20,7 +20,7 @@ const Users = (props) => {
       </div>
       <div>
         {props.followed ? (
-          <button onClick={onUnFollow}> unFollow</button>
+          <button onClick={onUnFollow}>Unfollow</button>
         ) : (
           <button onClick={onFollow}>Follow</button>
         )}

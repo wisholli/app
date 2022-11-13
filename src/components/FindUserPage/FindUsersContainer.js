@@ -31,8 +31,8 @@ const mapDispatchToProps = (dispatch) => {
     setCurrentPage: (currentPage) => {
       dispatch(setCurrentPageAC(currentPage));
     },
-    setTotalUsersCount: (totalUsersCount) => {
-      dispatch(setTotalUsersCountAC(totalUsersCount));
+    setTotalUsersCount: (count) => {
+      dispatch(setTotalUsersCountAC(count));
     },
   };
 };

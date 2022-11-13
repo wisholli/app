@@ -8,7 +8,7 @@ let initialState = {
   data: [],
   pageSize: 20,
   totalUsersCount: 0,
-  currentPage: 3,
+  currentPage: 1,
 };
 
 const findUsersReducer = (state = initialState, action) => {

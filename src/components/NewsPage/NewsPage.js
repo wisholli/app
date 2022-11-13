@@ -1,51 +1,83 @@
 import React from "react";
+import { connect } from "react-redux";
 import {
-  addNewsActionCreator,
-  searchNewsActionCreator,
-  deleteNewsActionCreator,
-  updateSearchNewsActionCreator,
+  addNewsAC,
+  searchNewsAC,
+  deleteNewsAC,
+  updateAddNewsTextAC,
+  updateSearchNewsTextAC,
 } from "../../redux/newsReducer";
 import News from "./News/News";
 
+const mapStateToProps = (state) => {
+  console.log("state", state);
+  return {
+    news: state.news.data,
+    updateSearchNews: state.news.updateSearchNewsText,
+    updateAddNews: state.news.updateAddNewsText,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => ({
+  addNews: () => {
+    dispatch(addNewsAC());
+  },
+  searchNews: () => {
+    dispatch(searchNewsAC());
+  },
+  deleteNews: () => {
+    dispatch(deleteNewsAC());
+  },
+  updateSearchTextNews: (text) => {
+    dispatch(updateSearchNewsTextAC(text));
+  },
+  updateAddTextNews: (text) => {
+    dispatch(updateAddNewsTextAC(text));
+  },
+});
+
 const NewsPage = (props) => {
-  let newsData = props.store.getState().news;
+  console.log("props", props);
+  let newsData = props.news;
 
-  let news = newsData.data.map((news) => <News news={news.content} />);
-
-  let newNews = React.createRef();
+  let news = newsData.map((news) => <News news={news.content} />);
 
   let addNews = () => {
-    props.dispatch(addNewsActionCreator());
+    props.addNews();
   };
 
   let searchNews = () => {
-    props.dispatch(searchNewsActionCreator());
+    props.searchNews();
   };
 
   let deleteNews = () => {
-    props.dispatch(deleteNewsActionCreator());
+    props.deleteNews();
   };
 
-  let onNewsChange = () => {
-    let text = newNews.current.value;
-    props.dispatch(updateSearchNewsActionCreator(text));
+  let onNewsChange = (e) => {
+    let text = e.target.value;
+    props.updateSearchTextNews(text);
+  };
+  let onAddNewsTextChange = (e) => {
+    let text = e.target.value;
+    props.updateAddTextNews(text);
   };
   return (
     <div>
       <h1>News</h1>
       <div>
-        <textarea
-          onChange={onNewsChange}
-          ref={newNews}
-          value={newsData.searchNews}
-        />
+        <textarea onChange={onAddNewsTextChange} value={props.updateAddNews} />
         <button onClick={addNews}>Add news</button>
-        <button onClick={searchNews}>Search news</button>
         <button onClick={deleteNews}>Delete news</button>
+
+        <textarea onChange={onNewsChange} value={props.updateSearchNews} />
+
+        <button onClick={searchNews}>Search news</button>
+
         {news}
       </div>
     </div>
   );
 };
 
-export default NewsPage;
+export default connect(mapStateToProps, mapDispatchToProps)(NewsPage);

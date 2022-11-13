@@ -1,41 +1,55 @@
 import React from "react";
+import { connect } from "react-redux";
 import {
-  deleteMusicActionCreator,
-  searchMusicActionCreator,
-  updateSearchMusicNameActionCreator,
+  deleteMusicAC,
+  searchMusicAC,
+  updateSearchMusicNameAC,
 } from "../../redux/musicReducer";
 import style from "./Musicpage.module.css";
 import Songname from "./Songsname/Songsname";
 
-const Musicpage = (props) => {
-  let music = props.store.getState().music;
+const mapStateToProps = (state) => ({
+  music: state.music.data,
+  searchMusicName: state.music.searchMusicName,
+});
 
-  let songName = music.data.map((name) => <Songname songname={name.name} />);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    searchMusic: () => {
+      dispatch(searchMusicAC());
+    },
+    deleteMusic: () => {
+      dispatch(deleteMusicAC());
+    },
+    onMusicChange: (text) => {
+      dispatch(updateSearchMusicNameAC(text));
+    },
+  };
+};
 
-  let newMusic = React.createRef();
+const MusicPage = (props) => {
+  let music = props.music;
+
+  let songName = music.map((name) => <Songname songname={name.name} />);
 
   let searchMusic = () => {
-    props.dispatch(searchMusicActionCreator());
+    props.searchMusic();
   };
 
   let deleteMusic = () => {
-    props.dispatch(deleteMusicActionCreator());
+    props.deleteMusic();
   };
 
-  let onMusicChange = () => {
-    let text = newMusic.current.value;
-    props.dispatch(updateSearchMusicNameActionCreator(text));
+  let onMusicChange = (e) => {
+    let text = e.target.value;
+    props.onMusicChange(text);
   };
 
   return (
     <div className={style.content}>
       <h1 className={style.title}>Music</h1>
       <div>
-        <textarea
-          onChange={onMusicChange}
-          ref={newMusic}
-          value={music.searchMusicName}
-        />
+        <textarea onChange={onMusicChange} value={music.searchMusicName} />
         <button onClick={searchMusic}>Search music</button>
         <button onClick={deleteMusic}>Delete music</button>
         <p>{songName}</p>
@@ -44,4 +58,4 @@ const Musicpage = (props) => {
   );
 };
 
-export default Musicpage;
+export default connect(mapStateToProps, mapDispatchToProps)(MusicPage);

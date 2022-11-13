@@ -26,28 +26,26 @@ const musicReducer = (state = initialState, action) => {
       const newMusic = state.data.filter(
         (musicName) => musicName.name === state.searchMusicName
       );
-      /*     const newState = { ...this._state, music: { data: newMusic } }; */
-      state.searchMusicName = "";
-      state.data = newMusic;
-      return state;
+
+      return { ...state, data: [...newMusic], searchMusicName: "" };
     case DELETE_MUSIC:
-      state.data.pop();
-      return state;
+      let deleteMusic = [...state.data];
+      deleteMusic.pop();
+      return { ...state, data: [...deleteMusic] };
     case UPDATE_SEARCH_MUSIC_NAME:
-      state.searchMusicName = action.text;
-      return state;
+      return { ...state, searchMusicName: action.text };
     default:
       return state;
   }
 };
 
-export const searchMusicActionCreator = () => ({
+export const searchMusicAC = () => ({
   type: SEARCH_MUSIC,
 });
-export const deleteMusicActionCreator = () => ({
+export const deleteMusicAC = () => ({
   type: DELETE_MUSIC,
 });
-export const updateSearchMusicNameActionCreator = (text) => ({
+export const updateSearchMusicNameAC = (text) => ({
   type: UPDATE_SEARCH_MUSIC_NAME,
   text,
 });

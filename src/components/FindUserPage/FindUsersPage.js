@@ -10,14 +10,14 @@ const FindUsersPage = (props) => {
     pages.push(i);
   }
   return (
-    <div>
+    <div style={{ maxWidth: "1340px", overflowX: "scroll" }}>
       <div>
         {pages.map((p) => (
           <span
             className={props.currentPage === p && style.selectedPage}
             onClick={() => props.onpageChange(p)}
           >
-            {p}
+            {p + " "}
           </span>
         ))}
       </div>

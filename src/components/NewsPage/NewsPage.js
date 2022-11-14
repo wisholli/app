@@ -10,7 +10,6 @@ import {
 import News from "./News/News";
 
 const mapStateToProps = (state) => {
-  console.log("state", state);
   return {
     news: state.news.data,
     updateSearchNews: state.news.updateSearchNewsText,
@@ -37,7 +36,6 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 const NewsPage = (props) => {
-  console.log("props", props);
   let newsData = props.news;
 
   let news = newsData.map((news) => <News news={news.content} />);

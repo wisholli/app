@@ -27,7 +27,6 @@ let initialState = {
 };
 
 const newsReducer = (state = initialState, action) => {
-  console.log("action", action);
   switch (action.type) {
     case ADD_NEWS:
       let text = state.updateAddNewsText;

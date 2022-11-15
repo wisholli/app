@@ -53,20 +53,20 @@ const newsReducer = (state = initialState, action) => {
   }
 };
 
-export const addNewsAC = () => ({
+export const addNews = () => ({
   type: ADD_NEWS,
 });
-export const searchNewsAC = () => ({
+export const searchNews = () => ({
   type: SEARCH_NEWS,
 });
-export const deleteNewsAC = () => ({
+export const deleteNews = () => ({
   type: DELETE_NEWS,
 });
-export const updateSearchNewsTextAC = (text) => ({
+export const updateSearchNewsText = (text) => ({
   type: UPDATE_SEARCH_NEWS_TEXT,
   text,
 });
-export const updateAddNewsTextAC = (text) => ({
+export const updateAddNewsText = (text) => ({
   type: UPDATE_ADD_NEWS_TEXT,
   text,
 });

@@ -72,20 +72,20 @@ const messageReducer = (state = initialState, action) => {
   }
 };
 
-export const sendMessageActionCreator = () => ({
+export const sendMessage = () => ({
   type: SEND_MESSAGE,
 });
-export const updateNewMessageTextActionCreator = (text) => ({
+export const updateNewMessageText = (text) => ({
   type: UDATE_NEW_MESSAGE_TEXT,
   text,
 });
-export const searchUserActionCreator = () => ({
+export const searchUser = () => ({
   type: SEARCH_USER,
 });
-export const deleteUserActionCreator = () => ({
+export const deleteUser = () => ({
   type: DELETE_USER,
 });
-export const updateSearchUserNameActionCreator = (text) => ({
+export const updateSearchUserName = (text) => ({
   type: UDATE_SEARCH_USER_NAME,
   text,
 });

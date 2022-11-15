@@ -39,13 +39,13 @@ const musicReducer = (state = initialState, action) => {
   }
 };
 
-export const searchMusicAC = () => ({
+export const searchMusic = () => ({
   type: SEARCH_MUSIC,
 });
-export const deleteMusicAC = () => ({
+export const deleteMusic = () => ({
   type: DELETE_MUSIC,
 });
-export const updateSearchMusicNameAC = (text) => ({
+export const updateSearchMusicName = (text) => ({
   type: UPDATE_SEARCH_MUSIC_NAME,
   text,
 });

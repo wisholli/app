@@ -1,11 +1,11 @@
 import React from "react";
 import { connect } from "react-redux";
 import {
-  addNewsAC,
-  searchNewsAC,
-  deleteNewsAC,
-  updateAddNewsTextAC,
-  updateSearchNewsTextAC,
+  addNews,
+  searchNews,
+  deleteNews,
+  updateAddNewsText,
+  updateSearchNewsText,
 } from "../../redux/newsReducer";
 import News from "./News/News";
 
@@ -16,24 +16,6 @@ const mapStateToProps = (state) => {
     updateAddNews: state.news.updateAddNewsText,
   };
 };
-
-const mapDispatchToProps = (dispatch) => ({
-  addNews: () => {
-    dispatch(addNewsAC());
-  },
-  searchNews: () => {
-    dispatch(searchNewsAC());
-  },
-  deleteNews: () => {
-    dispatch(deleteNewsAC());
-  },
-  updateSearchTextNews: (text) => {
-    dispatch(updateSearchNewsTextAC(text));
-  },
-  updateAddTextNews: (text) => {
-    dispatch(updateAddNewsTextAC(text));
-  },
-});
 
 const NewsPage = (props) => {
   let newsData = props.news;
@@ -54,11 +36,11 @@ const NewsPage = (props) => {
 
   let onNewsChange = (e) => {
     let text = e.target.value;
-    props.updateSearchTextNews(text);
+    props.updateSearchNewsText(text);
   };
   let onAddNewsTextChange = (e) => {
     let text = e.target.value;
-    props.updateAddTextNews(text);
+    props.updateAddNewsText(text);
   };
   return (
     <div>
@@ -78,4 +60,10 @@ const NewsPage = (props) => {
   );
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(NewsPage);
+export default connect(mapStateToProps, {
+  addNews,
+  searchNews,
+  deleteNews,
+  updateAddNewsText,
+  updateSearchNewsText,
+})(NewsPage);

@@ -24,7 +24,7 @@ const Message = (props) => {
 
   let onUserGhange = () => {
     let text = newUser.current.value;
-    props.userGhange(text);
+    props.updateSearchUserName(text);
   };
 
   let onSendMessage = () => {
@@ -33,7 +33,7 @@ const Message = (props) => {
 
   let onMessageGhange = (e) => {
     let text = e.target.value;
-    props.messageGhange(text);
+    props.updateNewMessageText(text);
   };
 
   return (

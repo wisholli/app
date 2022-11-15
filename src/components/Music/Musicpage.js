@@ -1,9 +1,9 @@
 import React from "react";
 import { connect } from "react-redux";
 import {
-  deleteMusicAC,
-  searchMusicAC,
-  updateSearchMusicNameAC,
+  deleteMusic,
+  searchMusic,
+  updateSearchMusicName,
 } from "../../redux/musicReducer";
 import style from "./Musicpage.module.css";
 import Songname from "./Songsname/Songsname";
@@ -12,20 +12,6 @@ const mapStateToProps = (state) => ({
   music: state.music.data,
   searchMusicName: state.music.searchMusicName,
 });
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-    searchMusic: () => {
-      dispatch(searchMusicAC());
-    },
-    deleteMusic: () => {
-      dispatch(deleteMusicAC());
-    },
-    onMusicChange: (text) => {
-      dispatch(updateSearchMusicNameAC(text));
-    },
-  };
-};
 
 const MusicPage = (props) => {
   let music = props.music;
@@ -42,7 +28,7 @@ const MusicPage = (props) => {
 
   let onMusicChange = (e) => {
     let text = e.target.value;
-    props.onMusicChange(text);
+    props.updateSearchMusicName(text);
   };
 
   return (
@@ -58,4 +44,8 @@ const MusicPage = (props) => {
   );
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(MusicPage);
+export default connect(mapStateToProps, {
+  deleteMusic,
+  searchMusic,
+  updateSearchMusicName,
+})(MusicPage);

@@ -1,9 +1,9 @@
 import {
-  sendMessageActionCreator,
-  updateNewMessageTextActionCreator,
-  deleteUserActionCreator,
-  searchUserActionCreator,
-  updateSearchUserNameActionCreator,
+  sendMessage,
+  updateNewMessageText,
+  deleteUser,
+  searchUser,
+  updateSearchUserName,
 } from "../../redux/messageReducer";
 import Message from "./Mesage";
 import { connect } from "react-redux";
@@ -17,26 +17,12 @@ let mapStateToProps = (state) => {
   };
 };
 
-let mapDispatchToProps = (dispatch) => {
-  return {
-    searchUser: () => {
-      dispatch(searchUserActionCreator());
-    },
-    deleteUser: () => {
-      dispatch(deleteUserActionCreator());
-    },
-    userGhange: (text) => {
-      dispatch(updateSearchUserNameActionCreator(text));
-    },
-    sendMessage: () => {
-      dispatch(sendMessageActionCreator());
-    },
-    messageGhange: (text) => {
-      dispatch(updateNewMessageTextActionCreator(text));
-    },
-  };
-};
-
-const MesageContainer = connect(mapStateToProps, mapDispatchToProps)(Message);
+const MesageContainer = connect(mapStateToProps, {
+  sendMessage,
+  updateNewMessageText,
+  deleteUser,
+  searchUser,
+  updateSearchUserName,
+})(Message);
 
 export default MesageContainer;

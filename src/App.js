@@ -7,6 +7,7 @@ import MusicPage from "./components/Music/Musicpage";
 import NewsPage from "./components/NewsPage/NewsPage";
 import MesageContainer from "./components/Message/MesageContainer";
 import UsersContainer from "./components/FindUserPage/FindUsersContainer";
+import HomepageContainer from "./components/Homepage/HomepageContainer";
 
 const App = (props) => {
   return (
@@ -15,7 +16,10 @@ const App = (props) => {
         <Header />
         <Nav />
         <Routes>
-          <Route exact path="/" element={<Homepage />}></Route>
+          <Route path="/" element={<HomepageContainer />}>
+            <Route path=":userId" element={<HomepageContainer />}></Route>
+          </Route>
+
           <Route exact path="/message" element={<MesageContainer />}></Route>
           <Route exact path="/music" element={<MusicPage />}></Route>
           <Route exact path="/news" element={<NewsPage />}></Route>

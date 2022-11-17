@@ -29,6 +29,7 @@ const Posts = (props) => {
         <button onClick={onAddPost} className={style.button}>
           Add post
         </button>
+
         <div className={style.post}>{postElemets}</div>
       </div>
     </div>

@@ -1,6 +1,7 @@
 import React from "react";
 import style from "./Users.module.css";
 import avatar from "../../assets/imeges/avatar.png";
+import { NavLink } from "react-router-dom";
 
 const Users = (props) => {
   let onFollow = () => {
@@ -13,10 +14,12 @@ const Users = (props) => {
   return (
     <div className={style.content} key={props.id}>
       <div>
-        <img
-          className={style.img}
-          src={props.photo != null ? props.photo : avatar}
-        />
+        <NavLink to={"/" + props.id}>
+          <img
+            className={style.img}
+            src={props.photo != null ? props.photo : avatar}
+          />
+        </NavLink>
       </div>
       <div>
         {props.followed ? (
@@ -25,11 +28,10 @@ const Users = (props) => {
           <button onClick={onFollow}>Follow</button>
         )}
       </div>
-      <div className={style.description}>{props.name}</div>
-      <div className={style.description}>{props.status}</div>
 
-      {/* <div className={style.description}>{props.location.country}</div>
-      <div className={style.description}>{props.location.city}</div> */}
+      <div className={style.description}>{props.name}</div>
+
+      <div className={style.description}>{props.status}</div>
     </div>
   );
 };

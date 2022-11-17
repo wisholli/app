@@ -24,6 +24,7 @@ const FindUsersPage = (props) => {
       <div>
         {props.users.map((user) => (
           <Users
+            id={user.id}
             photo={user.photos.small}
             followed={user.followed}
             name={user.name}

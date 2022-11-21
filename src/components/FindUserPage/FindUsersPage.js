@@ -30,18 +30,23 @@ const FindUsersPage = (props) => {
             followed={user.followed}
             name={user.name}
             status={user.status}
+            followingInProgress={props.followingInProgress}
             onFollow={() => {
+              props.toggleFollowingProgress(true, user.id);
               usersAPI.follow(user.id).then((data) => {
                 if (data.resultCode === 0) {
                   props.onFollow(user.id);
                 }
+                props.toggleFollowingProgress(false, user.id);
               });
             }}
             onUnFollow={() => {
+              props.toggleFollowingProgress(true, user.id);
               usersAPI.unFollow(user.id).then((data) => {
                 if (data.resultCode === 0) {
                   props.onUnFollow(user.id);
                 }
+                props.toggleFollowingProgress(false, user.id);
               });
             }}
           />

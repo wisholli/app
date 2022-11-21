@@ -1,25 +1,24 @@
 import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Homepage from "./components/Homepage/Homepage";
-import Header from "./components/Header/Header";
 import Nav from "./components/Nav/Nav";
 import MusicPage from "./components/Music/Musicpage";
 import NewsPage from "./components/NewsPage/NewsPage";
 import MesageContainer from "./components/Message/MesageContainer";
 import UsersContainer from "./components/FindUserPage/FindUsersContainer";
 import HomepageContainer from "./components/Homepage/HomepageContainer";
+import HeaderContainer from "./components/Header/HeaderContainer";
 
 const App = (props) => {
   return (
     <BrowserRouter>
       <div className="app-wrapper">
-        <Header />
+        <HeaderContainer />
         <Nav />
         <Routes>
           <Route path="/" element={<HomepageContainer />}>
             <Route path=":userId" element={<HomepageContainer />}></Route>
           </Route>
-
+          <Route path="/login" element={<HeaderContainer />}></Route>
           <Route exact path="/message" element={<MesageContainer />}></Route>
           <Route exact path="/music" element={<MusicPage />}></Route>
           <Route exact path="/news" element={<NewsPage />}></Route>

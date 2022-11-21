@@ -47,6 +47,13 @@ const Nav = () => {
       >
         <Link to="/findusers">Find user</Link>
       </div>
+      <div
+        className={`${style.item} ${
+          location.pathname === "/login" ? style.active : null
+        }`}
+      >
+        <Link to="/login"></Link>
+      </div>
     </nav>
   );
 };

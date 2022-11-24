@@ -1,10 +1,8 @@
 import React from "react";
 import { connect } from "react-redux";
 import Homepage from "./Homepage";
-import { setUserProfile } from "../../redux/postsReducer";
-
+import { setUserProfileTC } from "../../redux/postsReducer";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
-import { usersAPI } from "../../api/api";
 
 class HomepageContainer extends React.Component {
   componentDidMount() {
@@ -12,9 +10,7 @@ class HomepageContainer extends React.Component {
     if (!userId) {
       userId = 2;
     }
-    usersAPI.getUserId(userId).then((data) => {
-      this.props.setUserProfile(data);
-    });
+    this.props.setUserProfileTC(userId);
   }
 
   render() {
@@ -35,6 +31,6 @@ function withRouter(Component) {
   return ComponentWithRouterProp;
 }
 
-export default connect(mapStateToProps, { setUserProfile })(
+export default connect(mapStateToProps, { setUserProfileTC })(
   withRouter(HomepageContainer)
 );

@@ -1,5 +1,4 @@
 import React from "react";
-import { usersAPI } from "../../api/api";
 import Users from "./Users/Users";
 import style from "./Users/Users.module.css";
 
@@ -32,22 +31,10 @@ const FindUsersPage = (props) => {
             status={user.status}
             followingInProgress={props.followingInProgress}
             onFollow={() => {
-              props.toggleFollowingProgress(true, user.id);
-              usersAPI.follow(user.id).then((data) => {
-                if (data.resultCode === 0) {
-                  props.onFollow(user.id);
-                }
-                props.toggleFollowingProgress(false, user.id);
-              });
+              props.onFollow(user.id);
             }}
             onUnFollow={() => {
-              props.toggleFollowingProgress(true, user.id);
-              usersAPI.unFollow(user.id).then((data) => {
-                if (data.resultCode === 0) {
-                  props.onUnFollow(user.id);
-                }
-                props.toggleFollowingProgress(false, user.id);
-              });
+              props.onUnFollow(user.id);
             }}
           />
         ))}

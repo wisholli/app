@@ -1,9 +1,9 @@
 import React from "react";
 import { connect } from "react-redux";
+import { Navigate } from "react-router-dom";
 
 import {
   setCurrentPage,
-  toggleFollowingProgress,
   getUsers,
   followTC,
   unFollowTC,
@@ -30,6 +30,9 @@ class UsersContainer extends React.Component {
   };
 
   render() {
+    if (!this.props.isAuth) {
+      return <Navigate to={"/login"} />;
+    }
     return (
       <>
         {this.props.isFetching ? (
@@ -60,6 +63,7 @@ const mapStateToProps = (state) => {
     currentPage: state.findUsers.currentPage,
     isFetching: state.findUsers.isFetching,
     followingInProgress: state.findUsers.followingInProgress,
+    isAuth: state.auth.isAuth,
   };
 };
 

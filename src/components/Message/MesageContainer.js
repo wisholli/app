@@ -14,6 +14,7 @@ let mapStateToProps = (state) => {
     users: state.message.users,
     searchUserName: state.message.searchUserName,
     newMessageText: state.message.newMessageText,
+    isAuth: state.auth.isAuth,
   };
 };
 

@@ -9,6 +9,7 @@ const FindUsersPage = (props) => {
   for (let i = 1; i <= pagesCount; i++) {
     pages.push(i);
   }
+
   return (
     <div style={{ maxWidth: "1340px", overflowX: "scroll" }}>
       <div>

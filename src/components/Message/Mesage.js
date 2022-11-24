@@ -2,8 +2,12 @@ import style from "./Message.module.css";
 import Users from "./Users/Users";
 import React from "react";
 import Messages from "./Messages/Messages";
+import { Navigate } from "react-router-dom";
 
 const Message = (props) => {
+  if (!props.isAuth) {
+    return <Navigate to={"/login"} />;
+  }
   let info = props.users.map((info) => (
     <Users key={info.id} name={info.name} link={info.link} />
   ));

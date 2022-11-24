@@ -2,7 +2,12 @@ import React from "react";
 import { connect } from "react-redux";
 import Homepage from "./Homepage";
 import { setUserProfileTC } from "../../redux/postsReducer";
-import { useLocation, useNavigate, useParams } from "react-router-dom";
+import {
+  Navigate,
+  useLocation,
+  useNavigate,
+  useParams,
+} from "react-router-dom";
 
 class HomepageContainer extends React.Component {
   componentDidMount() {
@@ -14,11 +19,17 @@ class HomepageContainer extends React.Component {
   }
 
   render() {
+    if (!this.props.isAuth) {
+      return <Navigate to={"/login"} />;
+    }
     return <Homepage {...this.props} />;
   }
 }
 
-const mapStateToProps = (state) => ({ profile: state.posts.profile });
+const mapStateToProps = (state) => ({
+  profile: state.posts.profile,
+  isAuth: state.auth.isAuth,
+});
 
 function withRouter(Component) {
   function ComponentWithRouterProp(props) {

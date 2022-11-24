@@ -1,5 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
+import { Navigate } from "react-router-dom";
 import {
   addNews,
   searchNews,
@@ -14,10 +15,14 @@ const mapStateToProps = (state) => {
     news: state.news.data,
     updateSearchNews: state.news.updateSearchNewsText,
     updateAddNews: state.news.updateAddNewsText,
+    isAuth: state.auth.isAuth,
   };
 };
 
 const NewsPage = (props) => {
+  if (!props.isAuth) {
+    return <Navigate to={"/login"} />;
+  }
   let newsData = props.news;
 
   let news = newsData.map((news) => <News news={news.content} />);

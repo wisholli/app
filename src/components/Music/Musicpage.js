@@ -1,5 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
+import { Navigate } from "react-router-dom";
 import {
   deleteMusic,
   searchMusic,
@@ -11,9 +12,13 @@ import Songname from "./Songsname/Songsname";
 const mapStateToProps = (state) => ({
   music: state.music.data,
   searchMusicName: state.music.searchMusicName,
+  isAuth: state.auth.isAuth,
 });
 
 const MusicPage = (props) => {
+  if (!props.isAuth) {
+    return <Navigate to={"/login"} />;
+  }
   let music = props.music;
 
   let songName = music.map((name) => <Songname songname={name.name} />);

@@ -1,6 +1,5 @@
-// import style from './Homepage.module.css'
-
 import React from "react";
+
 import Preloader from "../Preloader/Preloader";
 import PostsContainer from "./Posts/PostsContainer";
 
@@ -8,6 +7,7 @@ const Homepage = (props) => {
   if (!props.profile) {
     return <Preloader />;
   }
+
   return (
     <div>
       <div>

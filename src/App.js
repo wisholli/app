@@ -7,6 +7,7 @@ import MesageContainer from "./components/Message/MesageContainer";
 import UsersContainer from "./components/FindUserPage/FindUsersContainer";
 import HomepageContainer from "./components/Homepage/HomepageContainer";
 import HeaderContainer from "./components/Header/HeaderContainer";
+import Login from "./components/Login/Login";
 
 const App = (props) => {
   return (
@@ -18,7 +19,7 @@ const App = (props) => {
           <Route path="/" element={<HomepageContainer />}>
             <Route path=":userId" element={<HomepageContainer />}></Route>
           </Route>
-          <Route path="/login" element={<HeaderContainer />}></Route>
+          <Route path="/login" element={<Login />}></Route>
           <Route exact path="/message" element={<MesageContainer />}></Route>
           <Route exact path="/music" element={<MusicPage />}></Route>
           <Route exact path="/news" element={<NewsPage />}></Route>

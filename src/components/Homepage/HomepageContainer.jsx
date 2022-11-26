@@ -4,6 +4,7 @@ import Homepage from "./Homepage";
 import { setUserProfileTC } from "../../redux/postsReducer";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { withAuthRedirect } from "../../hoc/withAuthRedirect";
+import { compose } from "redux";
 
 class HomepageContainer extends React.Component {
   componentDidMount() {
@@ -35,8 +36,8 @@ function withRouter(Component) {
   return ComponentWithRouterProp;
 }
 
-let AuthRedirectComponent = withAuthRedirect(HomepageContainer);
-
-export default connect(mapStateToProps, { setUserProfileTC })(
-  withRouter(AuthRedirectComponent)
-);
+export default compose(
+  connect(mapStateToProps, { setUserProfileTC }),
+  withRouter,
+  withAuthRedirect
+)(HomepageContainer);

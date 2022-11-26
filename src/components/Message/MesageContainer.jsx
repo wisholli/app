@@ -7,6 +7,8 @@ import {
 } from "../../redux/messageReducer";
 import Message from "./Mesage";
 import { connect } from "react-redux";
+import { compose } from "redux";
+import { withAuthRedirect } from "../../hoc/withAuthRedirect";
 
 let mapStateToProps = (state) => {
   return {
@@ -18,12 +20,13 @@ let mapStateToProps = (state) => {
   };
 };
 
-const MesageContainer = connect(mapStateToProps, {
-  sendMessage,
-  updateNewMessageText,
-  deleteUser,
-  searchUser,
-  updateSearchUserName,
-})(Message);
-
-export default MesageContainer;
+export default compose(
+  connect(mapStateToProps, {
+    sendMessage,
+    updateNewMessageText,
+    deleteUser,
+    searchUser,
+    updateSearchUserName,
+  }),
+  withAuthRedirect
+)(Message);

@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Navigate } from "react-router-dom";
+import { compose } from "redux";
 import { withAuthRedirect } from "../../hoc/withAuthRedirect";
 
 import {
@@ -64,11 +65,12 @@ const mapStateToProps = (state) => {
   };
 };
 
-let AuthRedirectComponent = withAuthRedirect(UsersContainer);
-
-export default connect(mapStateToProps, {
-  setCurrentPage,
-  getUsers,
-  followTC,
-  unFollowTC,
-})(AuthRedirectComponent);
+export default compose(
+  connect(mapStateToProps, {
+    setCurrentPage,
+    getUsers,
+    followTC,
+    unFollowTC,
+  }),
+  withAuthRedirect
+)(UsersContainer);

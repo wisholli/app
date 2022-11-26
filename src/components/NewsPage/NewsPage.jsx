@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
-import { Navigate } from "react-router-dom";
+import { compose } from "redux";
+import { withAuthRedirect } from "../../hoc/withAuthRedirect";
 import {
   addNews,
   searchNews,
@@ -20,9 +21,6 @@ const mapStateToProps = (state) => {
 };
 
 const NewsPage = (props) => {
-  if (!props.isAuth) {
-    return <Navigate to={"/login"} />;
-  }
   let newsData = props.news;
 
   let news = newsData.map((news) => <News news={news.content} />);
@@ -65,10 +63,13 @@ const NewsPage = (props) => {
   );
 };
 
-export default connect(mapStateToProps, {
-  addNews,
-  searchNews,
-  deleteNews,
-  updateAddNewsText,
-  updateSearchNewsText,
-})(NewsPage);
+export default compose(
+  connect(mapStateToProps, {
+    addNews,
+    searchNews,
+    deleteNews,
+    updateAddNewsText,
+    updateSearchNewsText,
+  }),
+  withAuthRedirect
+)(NewsPage);

@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
-import { Navigate } from "react-router-dom";
+import { compose } from "redux";
+import { withAuthRedirect } from "../../hoc/withAuthRedirect";
 import {
   deleteMusic,
   searchMusic,
@@ -16,9 +17,6 @@ const mapStateToProps = (state) => ({
 });
 
 const MusicPage = (props) => {
-  if (!props.isAuth) {
-    return <Navigate to={"/login"} />;
-  }
   let music = props.music;
 
   let songName = music.map((name) => <Songname songname={name.name} />);
@@ -49,8 +47,11 @@ const MusicPage = (props) => {
   );
 };
 
-export default connect(mapStateToProps, {
-  deleteMusic,
-  searchMusic,
-  updateSearchMusicName,
-})(MusicPage);
+export default compose(
+  connect(mapStateToProps, {
+    deleteMusic,
+    searchMusic,
+    updateSearchMusicName,
+  }),
+  withAuthRedirect
+)(MusicPage);

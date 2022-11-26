@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Navigate } from "react-router-dom";
+import { withAuthRedirect } from "../../hoc/withAuthRedirect";
 
 import {
   setCurrentPage,
@@ -30,9 +31,6 @@ class UsersContainer extends React.Component {
   };
 
   render() {
-    if (!this.props.isAuth) {
-      return <Navigate to={"/login"} />;
-    }
     return (
       <>
         {this.props.isFetching ? (
@@ -63,13 +61,14 @@ const mapStateToProps = (state) => {
     currentPage: state.findUsers.currentPage,
     isFetching: state.findUsers.isFetching,
     followingInProgress: state.findUsers.followingInProgress,
-    isAuth: state.auth.isAuth,
   };
 };
+
+let AuthRedirectComponent = withAuthRedirect(UsersContainer);
 
 export default connect(mapStateToProps, {
   setCurrentPage,
   getUsers,
   followTC,
   unFollowTC,
-})(UsersContainer);
+})(AuthRedirectComponent);

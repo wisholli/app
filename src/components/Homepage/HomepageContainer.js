@@ -2,12 +2,8 @@ import React from "react";
 import { connect } from "react-redux";
 import Homepage from "./Homepage";
 import { setUserProfileTC } from "../../redux/postsReducer";
-import {
-  Navigate,
-  useLocation,
-  useNavigate,
-  useParams,
-} from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
+import { withAuthRedirect } from "../../hoc/withAuthRedirect";
 
 class HomepageContainer extends React.Component {
   componentDidMount() {
@@ -19,16 +15,13 @@ class HomepageContainer extends React.Component {
   }
 
   render() {
-    if (!this.props.isAuth) {
-      return <Navigate to={"/login"} />;
-    }
     return <Homepage {...this.props} />;
   }
 }
 
 const mapStateToProps = (state) => ({
+  // isAuth: state.auth.isAuth,
   profile: state.posts.profile,
-  isAuth: state.auth.isAuth,
 });
 
 function withRouter(Component) {
@@ -42,6 +35,8 @@ function withRouter(Component) {
   return ComponentWithRouterProp;
 }
 
+let AuthRedirectComponent = withAuthRedirect(HomepageContainer);
+
 export default connect(mapStateToProps, { setUserProfileTC })(
-  withRouter(HomepageContainer)
+  withRouter(AuthRedirectComponent)
 );

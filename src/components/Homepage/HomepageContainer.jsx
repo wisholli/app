@@ -21,7 +21,6 @@ class HomepageContainer extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-  // isAuth: state.auth.isAuth,
   profile: state.posts.profile,
 });
 

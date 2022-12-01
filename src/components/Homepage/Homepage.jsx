@@ -16,7 +16,7 @@ const Homepage = (props) => {
       <div>{props.profile.fullName}</div>
       <div></div>
       <div>{props.profile.aboutMe}</div>
-      <ProfileStatus status={"ddfd"} />
+      <ProfileStatus status={props.status} updateStatus={props.updateStatus}/>
       <div>
         {!props.profile.lookingForAJob ? "Find job: NO" : "Find job: YES"}
       </div>

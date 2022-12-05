@@ -10,6 +10,7 @@ import musicReducer from "./musicReducer";
 import newsReducer from "./newsReducer";
 import postsReducer from "./postsReducer";
 import thunkMiddleware from "redux-thunk";
+import userProfileReducer from "./userProfileReducer";
 
 let reducers = combineReducers({
   posts: postsReducer,
@@ -18,6 +19,7 @@ let reducers = combineReducers({
   news: newsReducer,
   findUsers: findUsersReducer,
   auth: authReducer,
+  userProfile: userProfileReducer,
 });
 
 let store = createStore(reducers, applyMiddleware(thunkMiddleware));

@@ -5,7 +5,7 @@ import {
   setUserProfileTC,
   getUserStatus,
   updateUserStatusTC,
-} from "../../redux/postsReducer";
+} from "../../redux/userProfileReducer";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 // import { withAuthRedirect } from "../../hoc/withAuthRedirect";
 import { compose } from "redux";
@@ -28,8 +28,8 @@ class HomepageContainer extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-  profile: state.posts.profile,
-  status: state.posts.status,
+  profile: state.userProfile.profile,
+  status: state.userProfile.status,
 });
 
 function withRouter(Component) {

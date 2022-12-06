@@ -1,8 +1,6 @@
 const SEND_MESSAGE = "SEND-MESSAGE";
-const UDATE_NEW_MESSAGE_TEXT = "UDATE-NEW-MESSAGE-TEXT";
 const SEARCH_USER = "SEARCH-USER";
 const DELETE_USER = "DELETE-USER";
-const UDATE_SEARCH_USER_NAME = "UDATE-SEARCH-USER-NAME";
 
 let initialState = {
   messages: [
@@ -19,7 +17,6 @@ let initialState = {
       message: "Look at my dog",
     },
   ],
-  newMessageText: "",
   users: [
     {
       id: 1,
@@ -40,54 +37,41 @@ let initialState = {
       link: "lera",
     },
   ],
-  searchUserName: "",
 };
 
 const messageReducer = (state = initialState, action) => {
   switch (action.type) {
     case SEND_MESSAGE:
-      let text = state.newMessageText;
-
+      let text = action.newMessageText;
       return {
         ...state,
         messages: [...state.messages, { id: 4, message: text }],
-        newMessageText: "",
       };
-    case UDATE_NEW_MESSAGE_TEXT:
-      return { ...state, newMessageText: action.text };
     case SEARCH_USER:
       const newUsers = state.users.filter(
-        (user) => user.name === state.searchUserName
+        (user) => user.name === action.newUser
       );
-      return { ...state, users: [...newUsers], searchUserName: "" };
+      return { ...state, users: [...newUsers] };
     case DELETE_USER:
       const deleteUser = [...state.users];
       deleteUser.pop();
-
       return { ...state, users: [...deleteUser] };
-    case UDATE_SEARCH_USER_NAME:
-      return { ...state, searchUserName: action.text };
     default:
       return state;
   }
 };
 
-export const sendMessage = () => ({
+export const sendMessage = (newMessageText) => ({
   type: SEND_MESSAGE,
+  newMessageText,
 });
-export const updateNewMessageText = (text) => ({
-  type: UDATE_NEW_MESSAGE_TEXT,
-  text,
-});
-export const searchUser = () => ({
+
+export const searchUser = (newUser) => ({
   type: SEARCH_USER,
+  newUser,
 });
 export const deleteUser = () => ({
   type: DELETE_USER,
-});
-export const updateSearchUserName = (text) => ({
-  type: UDATE_SEARCH_USER_NAME,
-  text,
 });
 
 export default messageReducer;

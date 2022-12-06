@@ -11,6 +11,7 @@ import newsReducer from "./newsReducer";
 import postsReducer from "./postsReducer";
 import thunkMiddleware from "redux-thunk";
 import userProfileReducer from "./userProfileReducer";
+import { reducer as formReducer } from "redux-form";
 
 let reducers = combineReducers({
   posts: postsReducer,
@@ -20,6 +21,7 @@ let reducers = combineReducers({
   findUsers: findUsersReducer,
   auth: authReducer,
   userProfile: userProfileReducer,
+  form: formReducer,
 });
 
 let store = createStore(reducers, applyMiddleware(thunkMiddleware));

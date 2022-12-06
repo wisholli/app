@@ -1,15 +1,12 @@
 import { connect } from "react-redux";
-import { addPost, updateNewPostText } from "../../../redux/postsReducer";
+import { addPost } from "../../../redux/postsReducer";
 import Posts from "./Posts";
 let mapStateToProps = (state) => {
   return {
     posts: state.posts.data,
-    newPostText: state.posts.newPostText,
   };
 };
 
-const PostsContainer = connect(mapStateToProps, { addPost, updateNewPostText })(
-  Posts
-);
+const PostsContainer = connect(mapStateToProps, { addPost })(Posts);
 
 export default PostsContainer;

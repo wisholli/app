@@ -1,5 +1,4 @@
 const ADD_POST = "ADD-POST";
-const UPDATE_NEW_POST_TEXT = "UPDATE-NEW-POST-TEXT";
 
 let initialState = {
   data: [
@@ -9,13 +8,12 @@ let initialState = {
     { id: 4, message: "Good staf" },
     { id: 5, message: "50/50" },
   ],
-  newPostText: "",
 };
 
 const postsReducer = (state = initialState, action) => {
   switch (action.type) {
     case ADD_POST: {
-      let text = state.newPostText;
+      let text = action.newPostText;
       return {
         ...state,
         data: [
@@ -25,23 +23,16 @@ const postsReducer = (state = initialState, action) => {
             message: text,
           },
         ],
-        newPostText: "",
       };
-    }
-    case UPDATE_NEW_POST_TEXT: {
-      return { ...state, newPostText: action.text };
     }
     default:
       return state;
   }
 };
 
-export const addPost = () => ({
+export const addPost = (newPostText) => ({
   type: ADD_POST,
-});
-export const updateNewPostText = (text) => ({
-  type: UPDATE_NEW_POST_TEXT,
-  text,
+  newPostText,
 });
 
 export default postsReducer;

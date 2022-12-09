@@ -1,6 +1,6 @@
 import React from "react";
 import ProfileStatus from "./../ProfileStatus";
-import Preloader from "../../Preloader/Preloader";
+import Preloader from "../../common/Preloader/Preloader";
 
 const UserProfile = (props) => {
   if (!props.profile) {

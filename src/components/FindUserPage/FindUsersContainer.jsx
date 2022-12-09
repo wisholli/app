@@ -1,6 +1,5 @@
 import React from "react";
 import { connect } from "react-redux";
-import { Navigate } from "react-router-dom";
 import { compose } from "redux";
 import { withAuthRedirect } from "../../hoc/withAuthRedirect";
 
@@ -10,7 +9,7 @@ import {
   followTC,
   unFollowTC,
 } from "../../redux/findUsersReducer";
-import Preloader from "../Preloader/Preloader";
+import Preloader from "../common/Preloader/Preloader";
 import FindUsersPage from "./FindUsersPage";
 
 class UsersContainer extends React.Component {

@@ -7,7 +7,14 @@ const Header = (props) => {
       <img src="https://thumbs.dreamstime.com/b/plate-fork-spoon-logo-restaurant-menu-black-background-eps-plate-fork-spoon-logo-restaurant-menu-193129080.jpg" />
 
       <div className={style.loginBlock}>
-        {props.isAuth ? props.login : <NavLink to={"/login"}>Login</NavLink>}
+        {props.isAuth ? (
+          <div>
+            <div>{props.login}</div>
+            <button onClick={props.logout}>Logout</button>
+          </div>
+        ) : (
+          <NavLink to={"/login"}>Login</NavLink>
+        )}
       </div>
     </header>
   );

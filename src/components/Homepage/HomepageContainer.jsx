@@ -7,8 +7,8 @@ import {
   updateUserStatusTC,
 } from "../../redux/userProfileReducer";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
-// import { withAuthRedirect } from "../../hoc/withAuthRedirect";
 import { compose } from "redux";
+import { withAuthRedirect } from "../../hoc/withAuthRedirect";
 
 class HomepageContainer extends React.Component {
   componentDidMount() {
@@ -49,5 +49,6 @@ export default compose(
     getUserStatus,
     updateUserStatusTC,
   }),
-  withRouter
+  withRouter,
+  withAuthRedirect
 )(HomepageContainer);

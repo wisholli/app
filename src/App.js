@@ -8,26 +8,40 @@ import UsersContainer from "./components/FindUserPage/FindUsersContainer";
 import HomepageContainer from "./components/Homepage/HomepageContainer";
 import HeaderContainer from "./components/Header/HeaderContainer";
 import Login from "./components/Login/Login";
+import React from "react";
+import { initializeApp } from "./redux/appReducer";
+import { connect } from "react-redux";
+import { compose } from "redux";
+import Preloader from "./components/common/Preloader/Preloader";
 
-const App = (props) => {
-  return (
-    <BrowserRouter>
-      <div className="app-wrapper">
-        <HeaderContainer />
-        <Nav />
-        <Routes>
-          <Route path="/" element={<HomepageContainer />}>
-            <Route path=":userId" element={<HomepageContainer />}></Route>
-          </Route>
-          <Route path="/login" element={<Login />}></Route>
-          <Route exact path="/message" element={<MesageContainer />}></Route>
-          <Route exact path="/music" element={<MusicPage />}></Route>
-          <Route exact path="/news" element={<NewsPage />}></Route>
-          <Route exact path="/findusers" element={<UsersContainer />}></Route>
-        </Routes>
-      </div>
-    </BrowserRouter>
-  );
-};
+class App extends React.Component {
+  componentDidMount() {
+    this.props.initializeApp();
+  }
+  render() {
+    if (!this.props.initialized) {
+      return <Preloader />;
+    }
+    return (
+      <BrowserRouter>
+        <div className="app-wrapper">
+          <HeaderContainer />
+          <Nav />
+          <Routes>
+            <Route path="/" element={<HomepageContainer />}>
+              <Route path=":userId" element={<HomepageContainer />}></Route>
+            </Route>
+            <Route path="/login" element={<Login />}></Route>
+            <Route exact path="/message" element={<MesageContainer />}></Route>
+            <Route exact path="/music" element={<MusicPage />}></Route>
+            <Route exact path="/news" element={<NewsPage />}></Route>
+            <Route exact path="/findusers" element={<UsersContainer />}></Route>
+          </Routes>
+        </div>
+      </BrowserRouter>
+    );
+  }
+}
+const mapStateToProps = (state) => ({ initialized: state.app.initialized });
 
-export default App;
+export default compose(connect(mapStateToProps, { initializeApp }))(App);

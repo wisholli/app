@@ -12,6 +12,7 @@ import postsReducer from "./postsReducer";
 import thunkMiddleware from "redux-thunk";
 import userProfileReducer from "./userProfileReducer";
 import { reducer as formReducer } from "redux-form";
+import appReducer from "./appReducer";
 
 let reducers = combineReducers({
   posts: postsReducer,
@@ -21,6 +22,7 @@ let reducers = combineReducers({
   findUsers: findUsersReducer,
   auth: authReducer,
   userProfile: userProfileReducer,
+  app: appReducer,
   form: formReducer,
 });
 

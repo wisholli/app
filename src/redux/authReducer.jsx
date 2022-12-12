@@ -29,47 +29,39 @@ export const setAuthUserData = (userId, email, login, isAuth) => {
   };
 };
 
-export const setAuthUserDataTC = () => {
-  return (dispatch) => {
-    authAPI.auth().then((data) => {
-      if (data.resultCode === 0) {
-        let id = data.data.id;
-        let email = data.data.email;
-        let login = data.data.login;
-        dispatch(setAuthUserData(id, email, login, true));
-      }
-    });
-  };
+export const setAuthUserDataTC = () => (dispatch) => {
+  return authAPI.auth().then((data) => {
+    if (data.resultCode === 0) {
+      let id = data.data.id;
+      let email = data.data.email;
+      let login = data.data.login;
+      dispatch(setAuthUserData(id, email, login, true));
+    }
+  });
 };
 
-export const login = (email, password, rememberMe) => {
-  return (dispatch) => {
-    authAPI.login(email, password, rememberMe).then((data) => {
-      if (data.resultCode === 0) {
-        dispatch(setAuthUserDataTC());
-      } else {
-        let message =
-          data.messages.length > 0
-            ? data.messages[0]
-            : "Email or login is wrong";
-        dispatch(
-          stopSubmit("login", {
-            _error: message,
-          })
-        );
-      }
-    });
-  };
+export const login = (email, password, rememberMe) => (dispatch) => {
+  authAPI.login(email, password, rememberMe).then((data) => {
+    if (data.resultCode === 0) {
+      dispatch(setAuthUserDataTC());
+    } else {
+      let message =
+        data.messages.length > 0 ? data.messages[0] : "Email or login is wrong";
+      dispatch(
+        stopSubmit("login", {
+          _error: message,
+        })
+      );
+    }
+  });
 };
 
-export const logout = () => {
-  return (dispatch) => {
-    authAPI.logout().then((data) => {
-      if (data.resultCode === 0) {
-        dispatch(setAuthUserData(null, null, null, false));
-      }
-    });
-  };
+export const logout = () => (dispatch) => {
+  authAPI.logout().then((data) => {
+    if (data.resultCode === 0) {
+      dispatch(setAuthUserData(null, null, null, false));
+    }
+  });
 };
 
 export default authReducer;

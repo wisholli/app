@@ -1,4 +1,4 @@
-export const getFindUser = (state) => {
+export const getFindUsers = (state) => {
   return state.findUsers.data;
 };
 export const getPageSize = (state) => {

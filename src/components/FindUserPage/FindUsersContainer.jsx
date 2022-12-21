@@ -11,7 +11,7 @@ import {
 } from "../../redux/findUsersReducer";
 import {
   getCurrentPage,
-  getFindUser,
+  getFindUsers,
   getFollowingInProgress,
   getIsFetching,
   getPageSize,
@@ -63,7 +63,7 @@ class UsersContainer extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    users: getFindUser(state),
+    users: getFindUsers(state),
     pageSize: getPageSize(state),
     totalUsersCount: getTotalUsersCount(state),
     currentPage: getCurrentPage(state),

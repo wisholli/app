@@ -9,6 +9,14 @@ import {
   followTC,
   unFollowTC,
 } from "../../redux/findUsersReducer";
+import {
+  getCurrentPage,
+  getFindUser,
+  getFollowingInProgress,
+  getIsFetching,
+  getPageSize,
+  getTotalUsersCount,
+} from "../../redux/Selectors/FindUserSelector";
 import Preloader from "../common/Preloader/Preloader";
 import FindUsersPage from "./FindUsersPage";
 
@@ -55,12 +63,12 @@ class UsersContainer extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    users: state.findUsers.data,
-    pageSize: state.findUsers.pageSize,
-    totalUsersCount: state.findUsers.totalUsersCount,
-    currentPage: state.findUsers.currentPage,
-    isFetching: state.findUsers.isFetching,
-    followingInProgress: state.findUsers.followingInProgress,
+    users: getFindUser(state),
+    pageSize: getPageSize(state),
+    totalUsersCount: getTotalUsersCount(state),
+    currentPage: getCurrentPage(state),
+    isFetching: getIsFetching(state),
+    followingInProgress: getFollowingInProgress(state),
   };
 };
 

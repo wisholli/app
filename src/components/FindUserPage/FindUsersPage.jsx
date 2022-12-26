@@ -1,6 +1,6 @@
 import React from "react";
 import Pagination from "../common/Pagination/Pagination";
-import Users from "./Users/Users";
+import User from "./Users/User";
 
 const FindUsersPage = (props) => {
   return (
@@ -15,7 +15,7 @@ const FindUsersPage = (props) => {
       </div>
       <div>
         {props.users.map((user) => (
-          <Users
+          <User
             id={user.id}
             photo={user.photos.small}
             followed={user.followed}

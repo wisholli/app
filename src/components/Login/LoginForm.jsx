@@ -5,9 +5,9 @@ import { maxLengthCreator, required } from "../../utils/validators/validators";
 import styles from "../common/FormsControls/FormsControls.module.css";
 
 const maxLength = maxLengthCreator(100);
-const LoginForm = (props) => {
+const LoginForm = ({ handleSubmit, error }) => {
   return (
-    <form onSubmit={props.handleSubmit}>
+    <form onSubmit={handleSubmit}>
       <div>
         <Field
           component={Input}
@@ -29,9 +29,7 @@ const LoginForm = (props) => {
         <Field component={Input} name={"rememberMe"} type={"checkbox"} />
         Remember me
       </div>
-      {props.error ? (
-        <div className={styles.formSummaryError}>{props.error}</div>
-      ) : null}
+      {error ? <div className={styles.formSummaryError}>{error}</div> : null}
 
       <div>
         <button>Login</button>

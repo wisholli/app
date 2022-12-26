@@ -7,7 +7,7 @@ const FindUsersPage = (props) => {
     <div style={{ maxWidth: "1340px", overflowX: "scroll" }}>
       <div>
         <Pagination
-          totalUsersCount={props.totalUsersCount}
+          totalItemsCount={props.totalItemsCount}
           pageSize={props.pageSize}
           currentPage={props.currentPage}
           onpageChange={props.onpageChange}

@@ -10,60 +10,36 @@ const instance = axios.create({
 
 export const usersAPI = {
   getUsers(currentPage, pageSize) {
-    return instance
-      .get(`users?page=${currentPage}&count=${pageSize}`)
-      .then((response) => {
-        return response.data;
-      });
+    return instance.get(`users?page=${currentPage}&count=${pageSize}`);
   },
   follow(id) {
-    return instance.post(`follow/${id}`).then((response) => {
-      return response.data;
-    });
+    return instance.post(`follow/${id}`);
   },
   unFollow(id) {
-    return instance.delete(`follow/${id}`).then((response) => {
-      return response.data;
-    });
+    return instance.delete(`follow/${id}`);
   },
 };
 
 export const userProfileAPI = {
   getUserProfile(userId) {
-    return instance.get(`profile/` + userId).then((response) => {
-      return response.data;
-    });
+    return instance.get(`profile/` + userId);
   },
   getUserStatus(id) {
-    return instance.get(`profile/status/` + id).then((response) => {
-      return response.data;
-    });
+    return instance.get(`profile/status/` + id);
   },
   updateUserStatus(status) {
-    return instance
-      .put(`profile/status`, { status: status })
-      .then((response) => {
-        return response.data;
-      });
+    return instance.put(`profile/status`, { status: status });
   },
 };
 
 export const authAPI = {
   auth() {
-    return instance.get(`auth/me`).then((response) => {
-      return response.data;
-    });
+    return instance.get(`auth/me`);
   },
   login(email, password, rememberMe = false) {
-    return instance
-      .post(`auth/login`, { email, password, rememberMe })
-      .then((response) => {
-        return response.data;
-      });
+    return instance.post(`auth/login`, { email, password, rememberMe });
   },
   logout() {
-    return instance.delete(`auth/login`).then((response) => {
-      return response.data;
-    });
+    return instance.delete(`auth/login`);
   },
 };

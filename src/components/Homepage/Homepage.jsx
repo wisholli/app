@@ -7,9 +7,11 @@ const Homepage = (props) => {
     <div>
       <div>
         <UserProfile
+          isOwner={props.isOwner}
           profile={props.profile}
           status={props.status}
           updateStatus={props.updateStatus}
+          savePhoto={props.savePhoto}
         />
       </div>
       <div>

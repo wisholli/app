@@ -5,13 +5,14 @@ import {
   setUserProfileTC,
   getUserStatus,
   updateUserStatusTC,
+  savePhoto,
 } from "../../redux/userProfileReducer";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { compose } from "redux";
 import { withAuthRedirect } from "../../hoc/withAuthRedirect";
 
 class HomepageContainer extends React.Component {
-  componentDidMount() {
+  refreshProfile() {
     let userId = this.props.router.params.userId;
     if (!userId) {
       userId = this.props.authorizedUserId;
@@ -21,9 +22,26 @@ class HomepageContainer extends React.Component {
     this.props.getUserStatus(userId);
   }
 
+  componentDidMount() {
+    this.refreshProfile();
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    {
+      this.props.router.params.userId = !prevProps
+        ? this.refreshProfile()
+        : null;
+    }
+  }
+
   render() {
     return (
-      <Homepage {...this.props} updateStatus={this.props.updateUserStatusTC} />
+      <Homepage
+        {...this.props}
+        updateStatus={this.props.updateUserStatusTC}
+        savePhoto={this.props.savePhoto}
+        isOwner={!this.props.router.params.userId}
+      />
     );
   }
 }
@@ -51,6 +69,7 @@ export default compose(
     setUserProfileTC,
     getUserStatus,
     updateUserStatusTC,
+    savePhoto,
   }),
   withRouter,
   withAuthRedirect

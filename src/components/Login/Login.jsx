@@ -7,11 +7,17 @@ import { Navigate } from "react-router-dom";
 const mapStateToProps = (state) => ({
   isAuth: state.auth.isAuth,
   userId: state.auth.userId,
+  captchaUrl: state.auth.captchaUrl,
 });
 
 const Login = (props) => {
   const onSubmit = (formData) => {
-    props.login(formData.email, formData.password, formData.rememberMe);
+    props.login(
+      formData.email,
+      formData.password,
+      formData.rememberMe,
+      formData.captcha
+    );
   };
   if (props.isAuth) {
     return <Navigate to={`/${props.userId}`} />;
@@ -19,7 +25,7 @@ const Login = (props) => {
   return (
     <div>
       <h3>Login</h3>
-      <LoginForm onSubmit={onSubmit} />
+      <LoginForm onSubmit={onSubmit} captchaUrl={props.captchaUrl} />
     </div>
   );
 };

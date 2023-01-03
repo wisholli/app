@@ -5,7 +5,7 @@ import { maxLengthCreator, required } from "../../utils/validators/validators";
 import styles from "../common/FormsControls/FormsControls.module.css";
 
 const maxLength = maxLengthCreator(100);
-const LoginForm = ({ handleSubmit, error }) => {
+const LoginForm = ({ handleSubmit, error, captchaUrl }) => {
   return (
     <form onSubmit={handleSubmit}>
       <div>
@@ -30,6 +30,14 @@ const LoginForm = ({ handleSubmit, error }) => {
         Remember me
       </div>
       {error ? <div className={styles.formSummaryError}>{error}</div> : null}
+      <div>
+        {captchaUrl ? (
+          <div>
+            <img src={captchaUrl} />
+            <Field component={Input} name={"captcha"} validate={[required]} />
+          </div>
+        ) : null}
+      </div>
 
       <div>
         <button>Login</button>

@@ -1,10 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import Preloader from "../../common/Preloader/Preloader";
-import ProfileStatusWithHooks from "../ProfileStatusWithHooks";
 import avatar from "../../assets/imeges/avatar.png";
 import style from "./UserProfile.module.css";
+import ProfileData from "./ProfileData";
+import ProfileFormData from "./ProfileFormData";
 
 const UserProfile = (props) => {
+  let [editMode, setEditMode] = useState(false);
+
   if (!props.profile) {
     return <Preloader />;
   }
@@ -13,6 +16,12 @@ const UserProfile = (props) => {
     if (e.target.files.length) {
       props.savePhoto(e.target.files[0]);
     }
+  };
+
+  const onSubmit = (formData) => {
+    props.saveEditProfileData(formData).then(() => {
+      setEditMode(false);
+    });
   };
 
   return (
@@ -28,19 +37,27 @@ const UserProfile = (props) => {
         />
       </div>
       <div>
-        {props.isOwner ? (
+        {!props.isOwner ? (
           <input type={"file"} on onChange={onMainPhotoSelected} />
         ) : null}
       </div>
-      <div>{props.profile.fullName}</div>
-      <ProfileStatusWithHooks
-        status={props.status}
-        updateStatus={props.updateStatus}
-      />
-      <div>{props.profile.aboutMe}</div>
-      <div>
-        {!props.profile.lookingForAJob ? "Find job: NO" : "Find job: YES"}
-      </div>
+      {editMode ? (
+        <ProfileFormData
+          initialValues={props.profile}
+          profile={props.profile}
+          onSubmit={onSubmit}
+        />
+      ) : (
+        <ProfileData
+          profile={props.profile}
+          isOwner={props.isOwner}
+          status={props.status}
+          updateStatus={props.updateStatus}
+          goToEditMode={() => {
+            setEditMode(true);
+          }}
+        />
+      )}
     </div>
   );
 };

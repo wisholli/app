@@ -4,21 +4,35 @@ import React from "react";
 import Messages from "./Messages/Messages";
 import UsersForm from "./Users/UsersForm";
 import SendMessageForm from "./Messages/SendMessageForm";
+import { useDispatch, useSelector } from "react-redux";
+import { sendMessage, searchUser } from "../../redux/messageReducer";
 
-const Message = (props) => {
-  let info = props.users.map((info) => (
+const Message = () => {
+  const dispatch = useDispatch();
+
+  const data = useSelector((state) => state.message);
+  console.log(data.users);
+
+  const sendNewMessage = (value) => {
+    dispatch(sendMessage(value));
+  };
+
+  const searchOneUser = (value) => {
+    dispatch(searchUser(value));
+  };
+
+  let info = data.users.map((info) => (
     <Users key={info.id} name={info.name} link={info.link} />
   ));
 
-  let message = props.message.map((message) => (
+  let message = data.messages.map((message) => (
     <Messages message={message.message} />
   ));
   const onSubmitUser = (values) => {
-    props.searchUser(values.newUser);
-    // props.deleteUser();
+    searchOneUser(values.newUser);
   };
   const onSubmitMessage = (values) => {
-    props.sendMessage(values.newMessageText);
+    sendNewMessage(values.newMessageText);
   };
   return (
     <div className={style.menu}>

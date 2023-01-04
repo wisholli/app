@@ -12,6 +12,7 @@ const Homepage = (props) => {
           status={props.status}
           updateStatus={props.updateStatus}
           savePhoto={props.savePhoto}
+          saveEditProfileData={props.saveEditProfileData}
         />
       </div>
       <div>

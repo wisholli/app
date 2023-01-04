@@ -1,15 +1,43 @@
 import React from "react";
-import { connect } from "react-redux";
+import { connect, useSelector } from "react-redux";
 import Homepage from "./Homepage";
 import {
   setUserProfileTC,
   getUserStatus,
   updateUserStatusTC,
   savePhoto,
+  saveEditProfileDataTC,
 } from "../../redux/userProfileReducer";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { compose } from "redux";
 import { withAuthRedirect } from "../../hoc/withAuthRedirect";
+import { useEffect } from "react";
+
+// const HomepageFunctional = () => {
+//   const { userId } = useParams();
+//   const dataUserProfile = useSelector((state) => state.userProfile);
+//   const dataAuth = useSelector((state) => state.auth);
+//   const refreshData = () => {
+//     if (!userId) {
+//       userId = dataAuth.authorizedUserId;
+//     }
+
+//     setUserProfileTC(userId);
+//     getUserStatus(userId);
+//   };
+//   useEffect(() => {
+//     refreshData();
+//   }, []);
+//   return (
+//     <Homepage
+//       {...this.props}
+//       updateStatus={this.props.updateUserStatusTC}
+//       savePhoto={this.props.savePhoto}
+//       isOwner={this.props.router.params.userId}
+//       saveEditProfileData={this.props.saveEditProfileDataTC}
+//     />
+//   );
+// };
 
 class HomepageContainer extends React.Component {
   refreshProfile() {
@@ -40,7 +68,8 @@ class HomepageContainer extends React.Component {
         {...this.props}
         updateStatus={this.props.updateUserStatusTC}
         savePhoto={this.props.savePhoto}
-        isOwner={!this.props.router.params.userId}
+        isOwner={this.props.router.params.userId}
+        saveEditProfileData={this.props.saveEditProfileDataTC}
       />
     );
   }
@@ -70,6 +99,7 @@ export default compose(
     getUserStatus,
     updateUserStatusTC,
     savePhoto,
+    saveEditProfileDataTC,
   }),
   withRouter,
   withAuthRedirect

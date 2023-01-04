@@ -14,3 +14,31 @@
   font-weight: bold;
   border-color: black;
 }
+
+/* .pagination > li {
+  list-style: none;
+  border: 0.3px solid;
+}
+.pagination > li > a,
+.pagination > li > span {
+  float: left;
+  padding: 8px 20px;
+  line-height: 1.5;
+  border: 1px solid #ddd;
+  margin-left: -1px;
+}
+
+.pagination > li.active > a {
+  color: #fff;
+  background-color: #218838;
+  border-color: #1e7e34;
+}
+.pagination > li > a:hover {
+  background-color: #218838;
+  color: white;
+  cursor: pointer;
+}
+.pagination > li:first-child > a,
+.pagination > li:first-child > span {
+  margin-left: 0;
+} */

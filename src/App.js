@@ -1,5 +1,5 @@
 import "./App.css";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import Nav from "./components/Nav/Nav";
 import MusicPage from "./components/Music/Musicpage";
 import NewsPage from "./components/NewsPage/NewsPage";
@@ -18,7 +18,7 @@ const HomepageContainer = React.lazy(() =>
   import("./components/Homepage/HomepageContainer")
 );
 const UsersContainer = React.lazy(() =>
-  import("./components/FindUserPage/FindUsersContainer")
+  import("./components/FindUserPage/FindUsersPage")
 );
 
 class App extends React.Component {
@@ -62,3 +62,6 @@ class App extends React.Component {
 const mapStateToProps = (state) => ({ initialized: state.app.initialized });
 
 export default compose(connect(mapStateToProps, { initializeApp }))(App);
+
+//1) Material UI
+//2) Tailwind

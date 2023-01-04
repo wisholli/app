@@ -1,32 +1,54 @@
 import React from "react";
+import { useDispatch, useSelector } from "react-redux";
 import Pagination from "../common/Pagination/Pagination";
 import User from "./Users/User";
+import {
+  setCurrentPage,
+  getUsers,
+  followTC,
+  unFollowTC,
+} from "../../redux/findUsersReducer";
+import { useEffect } from "react";
 
-const FindUsersPage = (props) => {
+const FindUsersPage = () => {
+  const dispatch = useDispatch();
+  const data = useSelector((state) => state.findUsers);
+  useEffect(() => {
+    dispatch(getUsers(data.currentPage, data.pageSize));
+  }, [data.currentPage]);
+  const follow = (id) => {
+    dispatch(followTC(id));
+  };
+  const unFollow = (id) => {
+    dispatch(unFollowTC(id));
+  };
+  const getCurrentPage = (currentPage) => {
+    dispatch(setCurrentPage(currentPage));
+  };
   return (
     <div style={{ maxWidth: "1340px", overflowX: "scroll" }}>
       <div>
         <Pagination
-          totalItemsCount={props.totalItemsCount}
-          pageSize={props.pageSize}
-          currentPage={props.currentPage}
-          onpageChange={props.onpageChange}
+          users={data.data}
+          totalItemsCount={data.totalUsersCount}
+          currentPage={data.currentPage}
+          pageSize={data.pageSize}
+          setCurrentPage={getCurrentPage}
         />
       </div>
       <div>
-        {props.users.map((user) => (
+        {data.data.map((user) => (
           <User
             id={user.id}
             photo={user.photos.small}
             followed={user.followed}
             name={user.name}
-            status={user.status}
-            followingInProgress={props.followingInProgress}
+            followingInProgress={data.followingInProgress}
             onFollow={() => {
-              props.onFollow(user.id);
+              follow(user.id);
             }}
             onUnFollow={() => {
-              props.onUnFollow(user.id);
+              unFollow(user.id);
             }}
           />
         ))}

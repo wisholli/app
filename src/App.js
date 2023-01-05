@@ -10,6 +10,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Preloader from "./components/common/Preloader/Preloader";
 import Header from "./components/Header/Header";
 import Message from "./components/Message/Mesage";
+import Settings from "./components/SettingsPage/Settings";
 
 const Homepage = React.lazy(() => import("./components/Homepage/Profile"));
 const Users = React.lazy(() =>
@@ -42,6 +43,7 @@ const App = () => {
             <Route exact path="/music" element={<MusicPage />}></Route>
             <Route exact path="/news" element={<NewsPage />}></Route>
             <Route exact path="/findusers" element={<Users />}></Route>
+            <Route exact path="/settings" element={<Settings />}></Route>
           </Routes>
         </Suspense>
       </div>

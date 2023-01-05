@@ -23,7 +23,10 @@ const ProfileData = ({
         <b>Full name: </b>
         {profile.fullName}
       </div>
-      <ProfileStatusWithHooks status={status} updateStatus={updateStatus} />
+      <ProfileStatusWithHooks
+        propsStatus={status}
+        updateStatus={updateStatus}
+      />
       <div>
         <b>About me: </b>
         {profile.aboutMe}

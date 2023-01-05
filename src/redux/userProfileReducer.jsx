@@ -58,19 +58,18 @@ export const savePhoto = (file) => async (dispatch) => {
   dispatch(setPhotoSuccess(response.data.profile.photos));
 };
 
-export const saveEditProfileDataTC =
-  (profile) => async (dispatch, getState) => {
-    const response = await userProfileAPI.saveEditProfileData(profile);
-    if (response.data.resultCode === 0) {
-      dispatch(setUserProfileTC(profile.userId));
-    } else {
-      dispatch(
-        stopSubmit("editProfileData", {
-          _error: response.data.messages[0],
-        })
-      );
-      return Promise.reject(response.data.messages[0]);
-    }
-  };
+export const saveEditProfileDataTC = (profile) => async (dispatch) => {
+  const response = await userProfileAPI.saveEditProfileData(profile);
+  if (response.data.resultCode === 0) {
+    dispatch(setUserProfileTC(profile.userId));
+  } else {
+    dispatch(
+      stopSubmit("editProfileData", {
+        _error: response.data.messages[0],
+      })
+    );
+    return Promise.reject(response.data.messages[0]);
+  }
+};
 
 export default userProfileReducer;

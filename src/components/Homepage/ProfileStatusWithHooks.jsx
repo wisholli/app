@@ -2,13 +2,13 @@ import React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
 
-const ProfileStatusWithHooks = (props) => {
+const ProfileStatusWithHooks = ({ propsStatus, updateStatus }) => {
   let [editMode, setEditMode] = useState(false);
-  let [status, setStatus] = useState(props.status);
+  let [status, setStatus] = useState(propsStatus);
 
   useEffect(() => {
-    setStatus(props.status);
-  }, [props.status]);
+    setStatus(propsStatus);
+  }, [propsStatus]);
 
   const activateEditMode = () => {
     setEditMode(true);
@@ -16,7 +16,7 @@ const ProfileStatusWithHooks = (props) => {
 
   const deactivateEditMode = () => {
     setEditMode(false);
-    props.updateStatus(status);
+    updateStatus(status);
   };
 
   const onStatusChange = (e) => {
@@ -28,7 +28,7 @@ const ProfileStatusWithHooks = (props) => {
         <div>
           <span onDoubleClick={activateEditMode}>
             <b>Status: </b>
-            {!props.status ? "---" : props.status}
+            {!propsStatus ? "---" : propsStatus}
           </span>
         </div>
       ) : (

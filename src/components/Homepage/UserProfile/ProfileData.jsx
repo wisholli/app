@@ -1,7 +1,13 @@
 import React from "react";
 import ProfileStatusWithHooks from "../ProfileStatusWithHooks";
 
-const ProfileData = (props) => {
+const ProfileData = ({
+  profile,
+  isOwner,
+  status,
+  updateStatus,
+  goToEditMode,
+}) => {
   const Contact = ({ contactTitle, contactValue }) => {
     return (
       <div>
@@ -12,47 +18,36 @@ const ProfileData = (props) => {
   };
   return (
     <div>
-      {!props.isOwner ? (
-        <button onClick={props.goToEditMode}>Edit profile </button>
-      ) : null}
+      {!isOwner ? <button onClick={goToEditMode}>Edit profile </button> : null}
       <div>
         <b>Full name: </b>
-        {props.profile.fullName}
+        {profile.fullName}
       </div>
-      <ProfileStatusWithHooks
-        status={props.status}
-        updateStatus={props.updateStatus}
-      />
+      <ProfileStatusWithHooks status={status} updateStatus={updateStatus} />
       <div>
         <b>About me: </b>
-        {props.profile.aboutMe}
+        {profile.aboutMe}
       </div>
       <div>
-        {!props.profile.lookingForAJob ? (
-          <b>Find job: NO</b>
-        ) : (
-          <b>Find job: YES</b>
-        )}
+        {!profile.lookingForAJob ? <b>Find job: NO</b> : <b>Find job: YES</b>}
       </div>
       <div>
-        {!props.profile.lookingForAJob ? null : (
+        {!profile.lookingForAJob ? null : (
           <div>
             <b>Skills: </b>
-            {props.profile.lookingForAJobDescription}
+            {profile.lookingForAJobDescription}
           </div>
         )}
       </div>
       <div>
         <b>Contacts: </b>
-        {Object.keys(props.profile.contacts).map((key) => {
+        {Object.keys(profile.contacts).map((key) => {
           return (
             <Contact
               key={key}
-              contactTitle={!props.profile.contacts[key] ? null : key}
+              contactTitle={!profile.contacts[key] ? null : key}
               contactValue={
-                !props.profile.contacts[key]
-                  ? null
-                  : props.profile.contacts[key]
+                !profile.contacts[key] ? null : profile.contacts[key]
               }
             />
           );

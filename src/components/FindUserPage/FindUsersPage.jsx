@@ -29,9 +29,7 @@ const FindUsersPage = () => {
     <div style={{ maxWidth: "1340px", overflowX: "scroll" }}>
       <div>
         <Pagination
-          users={data.data}
           totalItemsCount={data.totalUsersCount}
-          currentPage={data.currentPage}
           pageSize={data.pageSize}
           setCurrentPage={getCurrentPage}
         />

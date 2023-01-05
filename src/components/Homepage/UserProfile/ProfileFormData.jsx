@@ -3,7 +3,7 @@ import { Field, reduxForm } from "redux-form";
 import { required } from "../../../utils/validators/validators";
 import { Input, Textarea } from "../../common/FormsControls/FormsControls";
 
-const ProfileFormData = ({ handleSubmit, profile, error, goToEditMode }) => {
+const ProfileFormData = ({ handleSubmit, profile, error }) => {
   return (
     <form onSubmit={handleSubmit}>
       <div>

@@ -1,7 +1,7 @@
-const Songname = (props) => {
+const Songname = ({ songname }) => {
   return (
     <div>
-      <p>{props.songname}</p>
+      <p>{songname}</p>
     </div>
   );
 };

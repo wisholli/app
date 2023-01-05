@@ -4,44 +4,48 @@ import avatar from "../../assets/imeges/avatar.png";
 import { NavLink } from "react-router-dom";
 
 const Users = (props) => {
-  let onFollow = () => {
-    props.onFollow();
+  const {
+    id,
+    photo,
+    followed,
+    name,
+    followingInProgress,
+    onFollow,
+    onUnFollow,
+  } = props;
+  let follow = () => {
+    onFollow();
   };
 
-  let onUnFollow = () => {
-    props.onUnFollow();
+  let unFollow = () => {
+    onUnFollow();
   };
   return (
-    <div className={style.content} key={props.id}>
+    <div className={style.content} key={id}>
       <div>
-        <NavLink to={"/" + props.id}>
-          <img
-            className={style.img}
-            src={props.photo != null ? props.photo : avatar}
-          />
+        <NavLink to={"/" + id}>
+          <img className={style.img} src={photo ? photo : avatar} />
         </NavLink>
       </div>
       <div>
-        {props.followed ? (
+        {followed ? (
           <button
-            disabled={props.followingInProgress.some((id) => id === props.id)}
-            onClick={onUnFollow}
+            disabled={followingInProgress.some((id) => id === id)}
+            onClick={unFollow}
           >
             Unfollow
           </button>
         ) : (
           <button
-            disabled={props.followingInProgress.some((id) => id === props.id)}
-            onClick={onFollow}
+            disabled={followingInProgress.some((id) => id === id)}
+            onClick={follow}
           >
             Follow
           </button>
         )}
       </div>
 
-      <div className={style.description}>{props.name}</div>
-
-      <div className={style.description}>{props.status}</div>
+      <div className={style.description}>{name}</div>
     </div>
   );
 };

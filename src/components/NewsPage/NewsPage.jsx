@@ -1,7 +1,5 @@
 import React from "react";
-import { connect } from "react-redux";
-import { compose } from "redux";
-import { withAuthRedirect } from "../../hoc/withAuthRedirect";
+import { useDispatch, useSelector } from "react-redux";
 import {
   addNews,
   searchNews,
@@ -11,51 +9,43 @@ import {
 } from "../../redux/newsReducer";
 import News from "./News/News";
 
-const mapStateToProps = (state) => {
-  return {
-    news: state.news.data,
-    updateSearchNews: state.news.updateSearchNewsText,
-    updateAddNews: state.news.updateAddNewsText,
-    isAuth: state.auth.isAuth,
-  };
-};
-
 const NewsPage = (props) => {
-  let newsData = props.news;
+  const dispatch = useDispatch();
+  const data = useSelector((state) => state.news);
+  let news = data.data.map((news) => <News news={news.content} />);
 
-  let news = newsData.map((news) => <News news={news.content} />);
-
-  let addNews = () => {
-    props.addNews();
+  let addNewNews = () => {
+    dispatch(addNews());
   };
 
-  let searchNews = () => {
-    props.searchNews();
+  let searchOneNews = () => {
+    dispatch(searchNews());
   };
 
-  let deleteNews = () => {
-    props.deleteNews();
+  let deleteOneNews = () => {
+    dispatch(deleteNews());
   };
 
   let onNewsChange = (e) => {
-    let text = e.target.value;
-    props.updateSearchNewsText(text);
+    dispatch(updateSearchNewsText(e.target.value));
   };
   let onAddNewsTextChange = (e) => {
-    let text = e.target.value;
-    props.updateAddNewsText(text);
+    dispatch(updateAddNewsText(e.target.value));
   };
   return (
     <div>
       <h1>News</h1>
       <div>
-        <textarea onChange={onAddNewsTextChange} value={props.updateAddNews} />
-        <button onClick={addNews}>Add news</button>
-        <button onClick={deleteNews}>Delete news</button>
+        <textarea
+          onChange={onAddNewsTextChange}
+          value={data.updateAddNewsText}
+        />
+        <button onClick={addNewNews}>Add news</button>
+        <button onClick={deleteOneNews}>Delete news</button>
 
-        <textarea onChange={onNewsChange} value={props.updateSearchNews} />
+        <textarea onChange={onNewsChange} value={data.updateSearchNewsText} />
 
-        <button onClick={searchNews}>Search news</button>
+        <button onClick={searchOneNews}>Search news</button>
 
         {news}
       </div>
@@ -63,13 +53,4 @@ const NewsPage = (props) => {
   );
 };
 
-export default compose(
-  connect(mapStateToProps, {
-    addNews,
-    searchNews,
-    deleteNews,
-    updateAddNewsText,
-    updateSearchNewsText,
-  }),
-  withAuthRedirect
-)(NewsPage);
+export default NewsPage;

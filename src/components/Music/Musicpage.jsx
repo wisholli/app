@@ -1,7 +1,5 @@
 import React from "react";
-import { connect } from "react-redux";
-import { compose } from "redux";
-import { withAuthRedirect } from "../../hoc/withAuthRedirect";
+import { useDispatch, useSelector } from "react-redux";
 import {
   deleteMusic,
   searchMusic,
@@ -10,48 +8,35 @@ import {
 import style from "./Musicpage.module.css";
 import Songname from "./Songsname/Songsname";
 
-const mapStateToProps = (state) => ({
-  music: state.music.data,
-  searchMusicName: state.music.searchMusicName,
-  isAuth: state.auth.isAuth,
-});
+const MusicPage = () => {
+  const dispatch = useDispatch();
+  const data = useSelector((state) => state.music);
 
-const MusicPage = (props) => {
-  let music = props.music;
+  let songName = data.data.map((name) => <Songname songname={name.name} />);
 
-  let songName = music.map((name) => <Songname songname={name.name} />);
-
-  let searchMusic = () => {
-    props.searchMusic();
+  let searchOneMusic = () => {
+    dispatch(searchMusic());
   };
 
-  let deleteMusic = () => {
-    props.deleteMusic();
+  let deleteOneMusic = () => {
+    dispatch(deleteMusic());
   };
 
   let onMusicChange = (e) => {
-    let text = e.target.value;
-    props.updateSearchMusicName(text);
+    dispatch(updateSearchMusicName(e.target.value));
   };
 
   return (
     <div className={style.content}>
       <h1 className={style.title}>Music</h1>
       <div>
-        <textarea onChange={onMusicChange} value={music.searchMusicName} />
-        <button onClick={searchMusic}>Search music</button>
-        <button onClick={deleteMusic}>Delete music</button>
+        <textarea onChange={onMusicChange} value={data.searchMusicName} />
+        <button onClick={searchOneMusic}>Search music</button>
+        <button onClick={deleteOneMusic}>Delete music</button>
         <p>{songName}</p>
       </div>
     </div>
   );
 };
 
-export default compose(
-  connect(mapStateToProps, {
-    deleteMusic,
-    searchMusic,
-    updateSearchMusicName,
-  }),
-  withAuthRedirect
-)(MusicPage);
+export default MusicPage;

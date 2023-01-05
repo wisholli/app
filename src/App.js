@@ -11,7 +11,7 @@ import Preloader from "./components/common/Preloader/Preloader";
 import Header from "./components/Header/Header";
 import Message from "./components/Message/Mesage";
 
-const Homepage = React.lazy(() => import("./components/Homepage/Homepage"));
+const Homepage = React.lazy(() => import("./components/Homepage/Profile"));
 const Users = React.lazy(() =>
   import("./components/FindUserPage/FindUsersPage")
 );

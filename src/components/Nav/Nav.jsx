@@ -10,7 +10,7 @@ const Nav = () => {
           location.pathname === "/" ? style.active : null
         }`}
       >
-        <Link to="/">Home page</Link>
+        <Link to="/">Profile</Link>
       </div>
       <div
         className={`${style.item} ${

@@ -2,7 +2,6 @@ import ReactPaginate from "react-paginate";
 
 const Pagination = ({ totalItemsCount, pageSize, setCurrentPage }) => {
   let pagesCount = Math.ceil(totalItemsCount / pageSize);
-  console.log(pagesCount);
   let pages = [];
   for (let i = 1; i <= pagesCount; i++) {
     pages.push(i);

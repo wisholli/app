@@ -1,60 +1,76 @@
 import React from "react";
-import { Field, reduxForm } from "redux-form";
-import { required } from "../../../utils/validators/validators";
-import { Input, Textarea } from "../../common/FormsControls/FormsControls";
+import { useFormik } from "formik";
 
-const ProfileFormData = ({ handleSubmit, profile, error }) => {
+const ProfileFormData = ({ profile, saveEditProfileData }) => {
+  const formik = useFormik({
+    initialValues: {
+      fullName: profile.fullName,
+      aboutMe: profile.aboutMe,
+      lookingForAJob: profile.lookingForAJob,
+      lookingForAJobDescription: profile.lookingForAJobDescription,
+      contacts: profile.contacts,
+    },
+    onSubmit: (profile) => {
+      saveEditProfileData(profile);
+    },
+  });
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={formik.handleSubmit}>
       <div>
-        <b>Full name: </b>
-        <Field
-          component={Input}
-          name={"fullName"}
-          placeholder={"Enter your full name"}
-          validate={[required]}
+        <label>Full Name: </label>
+        <input
+          name="fullName"
+          onChange={formik.handleChange}
+          value={formik.values.fullName}
         />
       </div>
+
       <div>
-        <b>About me: </b>
-        <Field
-          component={Textarea}
-          name={"aboutMe"}
-          placeholder={"Enter some information about you"}
-          validate={[required]}
+        <label>About Me: </label>
+        <input
+          name="aboutMe"
+          onChange={formik.handleChange}
+          value={formik.values.aboutMe}
         />
       </div>
+
       <div>
-        <b>Find job</b>
-        <Field component={Input} name={"lookingForAJob"} type={"checkbox"} />
-      </div>
-      <div>
-        <b>Skills: </b>
-        <Field
-          component={Input}
-          name={"lookingForAJobDescription"}
-          placeholder={"Enter description for job which your find"}
-          validate={[required]}
+        <label>Looking for a job: </label>
+        <input
+          id="lookingForAJob"
+          name="lookingForAJob"
+          type="checkbox"
+          onChange={formik.handleChange}
+          value={formik.values.lookingForAJob}
         />
       </div>
+
+      <div>
+        <label>Skills: </label>
+        <input
+          name="lookingForAJobDescription"
+          onChange={formik.handleChange}
+          value={formik.values.lookingForAJobDescription}
+        />
+      </div>
+
       {Object.keys(profile.contacts).map((key) => {
         return (
           <div key={key}>
-            <b>{key}: </b>
-            <Field
-              component={Input}
+            <label>{key}</label>
+            <input
               name={"contacts." + key}
               placeholder={key}
+              onChange={formik.handleChange}
+              value={formik.values.contacts[key]}
             />
           </div>
         );
       })}
-      {error ? <div>{error}</div> : null}
-      <div>
-        <button>Save</button>
-      </div>
+
+      <button type="save">Save</button>
     </form>
   );
 };
 
-export default reduxForm({ form: "editProfileData" })(ProfileFormData);
+export default ProfileFormData;

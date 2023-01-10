@@ -1,49 +1,62 @@
 import React from "react";
-import { Field, reduxForm } from "redux-form";
-import { Input } from "../common/FormsControls/FormsControls";
-import { maxLengthCreator, required } from "../../utils/validators/validators";
-import styles from "../common/FormsControls/FormsControls.module.css";
+import { useFormik } from "formik";
 
-const maxLength = maxLengthCreator(100);
-const LoginForm = ({ handleSubmit, error, captchaUrl }) => {
+const validate = ({ email, password }) => {
+  const errors = {};
+  if (!email) {
+    errors.email = "Required";
+  }
+
+  if (!password) {
+    errors.password = "Required";
+  }
+
+  return errors;
+};
+
+const SignupForm = ({ onLogin }) => {
+  const formik = useFormik({
+    initialValues: {
+      email: "",
+    },
+    validate,
+    onSubmit: ({ email, password }) => {
+      onLogin(email, password);
+    },
+  });
   return (
-    <form onSubmit={handleSubmit}>
-      <div>
-        <Field
-          component={Input}
-          name={"email"}
-          placeholder={"Email"}
-          validate={[required, maxLength]}
-        />
-      </div>
-      <div>
-        <Field
-          component={Input}
-          name={"password"}
-          type={"password"}
-          placeholder={"Password"}
-          validate={[required]}
-        />
-      </div>
-      <div>
-        <Field component={Input} name={"rememberMe"} type={"checkbox"} />
-        Remember me
-      </div>
-      {error ? <div className={styles.formSummaryError}>{error}</div> : null}
-      <div>
-        {captchaUrl ? (
-          <div>
-            <img src={captchaUrl} />
-            <Field component={Input} name={"captcha"} validate={[required]} />
-          </div>
-        ) : null}
-      </div>
+    <form onSubmit={formik.handleSubmit}>
+      <label htmlFor="email">Email Address</label>
+      <input
+        name="email"
+        type="email"
+        onChange={formik.handleChange}
+        onBlur={formik.handleBlur}
+        value={formik.values.email}
+      />
 
-      <div>
-        <button>Login</button>
-      </div>
+      {formik.touched.email && formik.errors.email ? (
+        <div>{formik.errors.email}</div>
+      ) : null}
+
+      <label htmlFor="password">Password</label>
+      <input
+        name="password"
+        type="password"
+        onChange={formik.handleChange}
+        onBlur={formik.handleBlur}
+        value={formik.values.password}
+      />
+
+      {formik.touched.password && formik.errors.password ? (
+        <div>{formik.errors.password}</div>
+      ) : null}
+
+      {/* {formik.status.error ? <div>{error}</div> : null} */}
+
+      <button type="login">Login</button>
     </form>
   );
 };
 
-export default reduxForm({ form: "login" })(LoginForm);
+export default SignupForm;

@@ -27,8 +27,8 @@ const Homepage = () => {
   const updateStatus = (status) => {
     dispatch(updateUserStatusTC(status));
   };
-  const saveEditProfileData = () => {
-    dispatch(saveEditProfileDataTC());
+  const saveEditProfileData = (profile) => {
+    dispatch(saveEditProfileDataTC(profile));
   };
   const saveUserPhoto = () => {
     dispatch(savePhoto());
